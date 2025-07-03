@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -44,40 +43,29 @@
   </style>
 </head>
 <body>
-  <h1>목요모리 木曜森</h1>
+  <h1>목요모리 mokyomori</h1>
   <div class="forest" id="forest"></div>
   <div class="footer">
-    목요일마다 느슨하게 숲을 가꿉니다.🌿<br>
+    매주 목요일, 내가 가꾸는 숲 — 목요모리 🌿<br>
     © 2025 mokyomori
   </div>
 
   <script>
     const forest = document.getElementById("forest");
 
-    const posts = [
-      { title: "love-tree", tag: "사랑" },
-      { title: "2025-07-04-start", tag: "사랑" },
-      { title: "summer-light", tag: "여름" },
-      { title: "care-memory", tag: "돌봄" },
-      { title: "like-a-movie", tag: "영화" },
-      { title: "body-language", tag: "몸" }
+    const trees = [
+      { title: "love-tree", tag: "사랑", x: 10, y: 15 },
+      { title: "summer-light", tag: "여름", x: 30, y: 50 },
+      { title: "care-memory", tag: "돌봄", x: 55, y: 40 },
+      { title: "like-a-movie", tag: "영화", x: 70, y: 20 },
+      { title: "body-language", tag: "몸", x: 40, y: 70 },
+      { title: "2025-07-04-start", tag: "사랑", x: 20, y: 60 }
     ];
 
-    const tagMap = {};
-    posts.forEach(post => {
-      if (!tagMap[post.tag]) {
-        tagMap[post.tag] = [];
-      }
-      tagMap[post.tag].push(post.title);
+    const tagCounts = {};
+    trees.forEach(tree => {
+      tagCounts[tree.tag] = (tagCounts[tree.tag] || 0) + 1;
     });
-
-    const tagPositions = {
-      사랑: { x: 15, y: 20 },
-      여름: { x: 35, y: 50 },
-      돌봄: { x: 55, y: 40 },
-      영화: { x: 70, y: 25 },
-      몸: { x: 40, y: 70 }
-    };
 
     const tagColors = {
       사랑: "#7fc97f",
@@ -87,16 +75,15 @@
       몸: "#3288bd"
     };
 
-    Object.entries(tagMap).forEach(([tag, titles]) => {
-      const count = titles.length;
-      const pos = tagPositions[tag] || { x: Math.random() * 80 + 10, y: Math.random() * 60 + 20 };
+    trees.forEach(tree => {
+      const count = tagCounts[tree.tag];
 
       const div = document.createElement("div");
       div.className = "tree";
-      div.style.left = `${pos.x}%`;
-      div.style.top = `${pos.y}%`;
+      div.style.left = `${tree.x}%`;
+      div.style.top = `${tree.y}%`;
 
-      const leafColor = tagColors[tag] || "#3ca370";
+      const leafColor = tagColors[tree.tag] || "#3ca370";
       const leafRadius = 12 + (count - 1) * 4;
       const trunkHeight = 20 + (count - 1) * 8;
 
@@ -108,9 +95,7 @@
       `;
 
       div.onclick = () => {
-        const list = titles.map(title => `• <a href="posts/${encodeURIComponent(title)}.html">${title}</a>`).join("<br>");
-        const popup = window.open("", "_blank", "width=400,height=300");
-        popup.document.write(`<h3>${tag} 관련 글</h3><p>${list}</p>`);
+        location.href = `posts/${encodeURIComponent(tree.title)}.html`;
       };
 
       forest.appendChild(div);
