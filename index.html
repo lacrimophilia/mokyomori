@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -13,14 +12,13 @@
       background-color: #ffffff;
     }
     .forest {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
+      position: relative;
+      min-height: 100vh;
       padding: 60px 20px 40px;
       background: linear-gradient(to bottom, #ffffff 0%, #eaf9e5 100%);
     }
     .tree {
-      margin: 20px;
+      position: absolute;
       width: 100px;
       height: 100px;
       background-size: contain;
@@ -64,16 +62,44 @@
 </head>
 <body>
   <h1>목요모리 mokyomori</h1>
-  <div class="forest">
-    <div class="tree tag-사랑" onclick="location.href='posts/사랑과-나무.html'"></div>
-    <div class="tree tag-여름" onclick="location.href='posts/여름의-빛.html'"></div>
-    <div class="tree tag-돌봄" onclick="location.href='posts/돌봄의-기억.html'"></div>
-    <div class="tree tag-영화" onclick="location.href='posts/영화처럼.html'"></div>
-    <div class="tree tag-몸" onclick="location.href='posts/몸의-언어.html'"></div>
-  </div>
+  <div class="forest" id="forest"></div>
   <div class="footer">
     매주 목요일, 내가 가꾸는 숲 — 목요모리 🌿<br>
     © 2025 mokyomori
   </div>
+
+  <script>
+    const forest = document.getElementById("forest");
+
+    const trees = [
+      { title: "사랑과-나무", tag: "사랑" },
+      { title: "여름의-빛", tag: "여름" },
+      { title: "돌봄의-기억", tag: "돌봄" },
+      { title: "영화처럼", tag: "영화" },
+      { title: "몸의-언어", tag: "몸" },
+      { title: "2025-07-04-시작", tag: "사랑" }
+    ];
+
+    const tagCounts = {};
+    trees.forEach(tree => {
+      tagCounts[tree.tag] = (tagCounts[tree.tag] || 0) + 1;
+    });
+
+    trees.forEach(tree => {
+      const div = document.createElement("div");
+      div.className = `tree tag-${tree.tag}`;
+      div.style.left = `${Math.random() * 80 + 5}%`;
+      div.style.top = `${Math.random() * 80 + 5}%`;
+
+      // 태그별 글 수에 따라 크기 확대
+      const scale = 1 + (tagCounts[tree.tag] - 1) * 0.2;
+      div.style.transform = `scale(${scale})`;
+
+      div.onclick = () => {
+        location.href = `posts/${tree.title}.html`;
+      };
+      forest.appendChild(div);
+    });
+  </script>
 </body>
 </html>
