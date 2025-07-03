@@ -31,19 +31,19 @@
       transform: scale(1.1);
     }
     .tag-사랑 {
-      background-image: url('https://cdn-icons-png.flaticon.com/512/777/777860.png');
+      background-image: url('https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f332.svg');
     }
     .tag-여름 {
-      background-image: url('https://cdn-icons-png.flaticon.com/512/777/777856.png');
+      background-image: url('https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f333.svg');
     }
     .tag-돌봄 {
-      background-image: url('https://cdn-icons-png.flaticon.com/512/777/777857.png');
+      background-image: url('https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f334.svg');
     }
     .tag-영화 {
-      background-image: url('https://cdn-icons-png.flaticon.com/512/777/777861.png');
+      background-image: url('https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f335.svg');
     }
     .tag-몸 {
-      background-image: url('https://cdn-icons-png.flaticon.com/512/777/777858.png');
+      background-image: url('https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f340.svg');
     }
     h1 {
       text-align: center;
@@ -72,12 +72,12 @@
     const forest = document.getElementById("forest");
 
     const trees = [
-      { title: "사랑과-나무", tag: "사랑" },
-      { title: "여름의-빛", tag: "여름" },
-      { title: "돌봄의-기억", tag: "돌봄" },
-      { title: "영화처럼", tag: "영화" },
-      { title: "몸의-언어", tag: "몸" },
-      { title: "2025-07-04-시작", tag: "사랑" }
+      { title: "사랑과-나무", tag: "사랑", x: 10, y: 15 },
+      { title: "여름의-빛", tag: "여름", x: 30, y: 50 },
+      { title: "돌봄의-기억", tag: "돌봄", x: 55, y: 40 },
+      { title: "영화처럼", tag: "영화", x: 70, y: 20 },
+      { title: "몸의-언어", tag: "몸", x: 40, y: 70 },
+      { title: "2025-07-04-시작", tag: "사랑", x: 20, y: 60 }
     ];
 
     const tagCounts = {};
@@ -88,15 +88,14 @@
     trees.forEach(tree => {
       const div = document.createElement("div");
       div.className = `tree tag-${tree.tag}`;
-      div.style.left = `${Math.random() * 80 + 5}%`;
-      div.style.top = `${Math.random() * 80 + 5}%`;
+      div.style.left = `${tree.x}%`;
+      div.style.top = `${tree.y}%`;
 
-      // 태그별 글 수에 따라 크기 확대
       const scale = 1 + (tagCounts[tree.tag] - 1) * 0.2;
       div.style.transform = `scale(${scale})`;
 
       div.onclick = () => {
-        location.href = `posts/${tree.title}.html`;
+        location.href = `posts/${encodeURIComponent(tree.title)}.html`;
       };
       forest.appendChild(div);
     });
