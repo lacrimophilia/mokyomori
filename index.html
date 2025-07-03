@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -53,19 +54,30 @@
   <script>
     const forest = document.getElementById("forest");
 
-    const trees = [
-      { title: "love-tree", tag: "사랑", x: 10, y: 15 },
-      { title: "summer-light", tag: "여름", x: 30, y: 50 },
-      { title: "care-memory", tag: "돌봄", x: 55, y: 40 },
-      { title: "like-a-movie", tag: "영화", x: 70, y: 20 },
-      { title: "body-language", tag: "몸", x: 40, y: 70 },
-      { title: "2025-07-04-start", tag: "사랑", x: 20, y: 60 }
+    const posts = [
+      { title: "love-tree", tag: "사랑" },
+      { title: "2025-07-04-start", tag: "사랑" },
+      { title: "summer-light", tag: "여름" },
+      { title: "care-memory", tag: "돌봄" },
+      { title: "like-a-movie", tag: "영화" },
+      { title: "body-language", tag: "몸" }
     ];
 
-    const tagCounts = {};
-    trees.forEach(tree => {
-      tagCounts[tree.tag] = (tagCounts[tree.tag] || 0) + 1;
+    const tagMap = {};
+    posts.forEach(post => {
+      if (!tagMap[post.tag]) {
+        tagMap[post.tag] = [];
+      }
+      tagMap[post.tag].push(post.title);
     });
+
+    const tagPositions = {
+      사랑: { x: 15, y: 20 },
+      여름: { x: 35, y: 50 },
+      돌봄: { x: 55, y: 40 },
+      영화: { x: 70, y: 25 },
+      몸: { x: 40, y: 70 }
+    };
 
     const tagColors = {
       사랑: "#7fc97f",
@@ -75,15 +87,16 @@
       몸: "#3288bd"
     };
 
-    trees.forEach(tree => {
-      const count = tagCounts[tree.tag];
+    Object.entries(tagMap).forEach(([tag, titles]) => {
+      const count = titles.length;
+      const pos = tagPositions[tag] || { x: Math.random() * 80 + 10, y: Math.random() * 60 + 20 };
 
       const div = document.createElement("div");
       div.className = "tree";
-      div.style.left = `${tree.x}%`;
-      div.style.top = `${tree.y}%`;
+      div.style.left = `${pos.x}%`;
+      div.style.top = `${pos.y}%`;
 
-      const leafColor = tagColors[tree.tag] || "#3ca370";
+      const leafColor = tagColors[tag] || "#3ca370";
       const leafRadius = 12 + (count - 1) * 4;
       const trunkHeight = 20 + (count - 1) * 8;
 
@@ -95,7 +108,9 @@
       `;
 
       div.onclick = () => {
-        location.href = `posts/${encodeURIComponent(tree.title)}.html`;
+        const list = titles.map(title => `• <a href="posts/${encodeURIComponent(title)}.html">${title}</a>`).join("<br>");
+        const popup = window.open("", "_blank", "width=400,height=300");
+        popup.document.write(`<h3>${tag} 관련 글</h3><p>${list}</p>`);
       };
 
       forest.appendChild(div);
