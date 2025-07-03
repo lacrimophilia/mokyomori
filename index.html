@@ -1,0 +1,79 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>목요모리</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Noto Sans KR", sans-serif;
+      background-color: #ffffff;
+    }
+    .forest {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 60px 20px 40px;
+      background: linear-gradient(to bottom, #ffffff 0%, #eaf9e5 100%);
+    }
+    .tree {
+      margin: 20px;
+      width: 100px;
+      height: 100px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    .tree:hover {
+      transform: scale(1.1);
+    }
+    .tag-사랑 {
+      background-image: url('https://cdn-icons-png.flaticon.com/512/777/777860.png');
+    }
+    .tag-여름 {
+      background-image: url('https://cdn-icons-png.flaticon.com/512/777/777856.png');
+    }
+    .tag-돌봄 {
+      background-image: url('https://cdn-icons-png.flaticon.com/512/777/777857.png');
+    }
+    .tag-영화 {
+      background-image: url('https://cdn-icons-png.flaticon.com/512/777/777861.png');
+    }
+    .tag-몸 {
+      background-image: url('https://cdn-icons-png.flaticon.com/512/777/777858.png');
+    }
+    h1 {
+      text-align: center;
+      margin-top: 40px;
+      font-weight: 500;
+      color: #2e5f3e;
+      font-size: 2em;
+    }
+    .footer {
+      text-align: center;
+      padding: 30px;
+      color: #777;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <h1>목요모리 mokyomori</h1>
+  <div class="forest">
+    <div class="tree tag-사랑" onclick="location.href='posts/사랑과-나무.html'"></div>
+    <div class="tree tag-여름" onclick="location.href='posts/여름의-빛.html'"></div>
+    <div class="tree tag-돌봄" onclick="location.href='posts/돌봄의-기억.html'"></div>
+    <div class="tree tag-영화" onclick="location.href='posts/영화처럼.html'"></div>
+    <div class="tree tag-몸" onclick="location.href='posts/몸의-언어.html'"></div>
+  </div>
+  <div class="footer">
+    매주 목요일, 내가 가꾸는 숲 — 목요모리 🌿<br>
+    © 2025 mokyomori
+  </div>
+</body>
+</html>
