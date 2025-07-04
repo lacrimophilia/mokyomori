@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="ko">
 <head>
 <meta charset="utf-8"/>
@@ -144,52 +143,41 @@
       forest.appendChild(div);
     });
 
-    // 구독자 아이콘
-    const subscriber = document.createElement("div");
-    subscriber.className = "subscriber";
-    subscriber.style.left = `${Math.random() * 80 + 10}%`;
-    subscriber.style.top = `${Math.random() * 60 + 20}%`;
-    subscriber.innerHTML = `
-      <svg viewBox="0 0 64 100">
-        <circle cx="32" cy="20" r="18" fill="#f4c20d"/>
-        <rect x="24" y="38" width="16" height="42" fill="#f4c20d"/>
-        <rect x="10" y="38" width="12" height="8" fill="#f4c20d"/>
-        <rect x="42" y="38" width="12" height="8" fill="#f4c20d"/>
-        <rect x="16" y="80" width="12" height="20" transform="rotate(-30 16 80)" fill="#f4c20d"/>
-        <rect x="36" y="80" width="12" height="20" transform="rotate(30 36 80)" fill="#f4c20d"/>
-      </svg>
-    `;
-    subscriber.onclick = () => {
-      const overlay = document.createElement("div");
-      overlay.className = "overlay";
-      const popup = document.createElement("div");
-      popup.className = "email-popup";
-      popup.innerHTML = `
-        <h3>숲의 소식을 메일로 받아보세요</h3>
-        <input type="email" id="emailInput" placeholder="이메일 주소 입력">
-        <button onclick="submitEmail()">구독하기</button>
-      `;
-      overlay.onclick = () => {
-        document.body.removeChild(popup);
-        document.body.removeChild(overlay);
-      };
-      document.body.appendChild(overlay);
-      document.body.appendChild(popup);
-    };
-    // SVG 기반 사람 아이콘 두 개 삽입
-    const peopleIcons = ['<svg viewBox="0 0 64 100">\n  <circle cx="32" cy="16" r="12" fill="#f4c20d"/>\n  <rect x="28" y="28" width="8" height="24" fill="#f4c20d"/>\n  <rect x="22" y="52" width="8" height="18" transform="rotate(-20 22 52)" fill="#f4c20d"/>\n  <rect x="34" y="52" width="8" height="18" transform="rotate(20 34 52)" fill="#f4c20d"/>\n</svg>', '<svg viewBox="0 0 100 64">\n  <circle cx="16" cy="32" r="12" fill="#f4c20d"/>\n  <rect x="28" y="28" width="24" height="8" fill="#f4c20d"/>\n  <rect x="52" y="22" width="18" height="8" transform="rotate(20 52 22)" fill="#f4c20d"/>\n  <rect x="52" y="38" width="18" height="8" transform="rotate(-20 52 38)" fill="#f4c20d"/>\n</svg>'];
-    peopleIcons.forEach(svg => {
+    // 걷는 사람 형태 아이콘 2개만 삽입
+    const personSVG = `<svg viewBox="0 0 64 100">
+      <circle cx="32" cy="16" r="10" fill="#f4c20d"/>
+      <rect x="28" y="26" width="8" height="32" fill="#f4c20d"/>
+      <line x1="28" y1="58" x2="20" y2="80" stroke="#f4c20d" stroke-width="6"/>
+      <line x1="36" y1="58" x2="44" y2="80" stroke="#f4c20d" stroke-width="6"/>
+    </svg>`;
+
+    for (let i = 0; i < 2; i++) {
       const person = document.createElement("div");
       person.className = "subscriber";
       person.style.left = `${Math.random() * 80 + 10}%`;
       person.style.top = `${Math.random() * 60 + 20}%`;
       person.style.width = "48px";
       person.style.height = "48px";
-      person.innerHTML = svg;
-      person.onclick = subscriber.onclick;
+      person.innerHTML = personSVG;
+      person.onclick = () => {
+        const overlay = document.createElement("div");
+        overlay.className = "overlay";
+        const popup = document.createElement("div");
+        popup.className = "email-popup";
+        popup.innerHTML = `
+          <h3>숲의 소식을 메일로 받아보세요</h3>
+          <input type="email" id="emailInput" placeholder="이메일 주소 입력">
+          <button onclick="submitEmail()">구독하기</button>
+        `;
+        overlay.onclick = () => {
+          document.body.removeChild(popup);
+          document.body.removeChild(overlay);
+        };
+        document.body.appendChild(overlay);
+        document.body.appendChild(popup);
+      };
       forest.appendChild(person);
-    });
-
+    }
 
     function submitEmail() {
       const email = document.getElementById("emailInput").value;
@@ -204,8 +192,6 @@
         document.querySelectorAll(".overlay, .email-popup").forEach(el => el.remove());
       }
     }
-  
-    
 </script>
 </body>
 </html>
