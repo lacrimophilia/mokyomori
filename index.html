@@ -1,11 +1,11 @@
-
 <!DOCTYPE html>
+
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>목요모리</title>
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>목요모리</title>
+<style>
     body {
       margin: 0;
       padding: 0;
@@ -24,13 +24,9 @@
       height: 100px;
       cursor: pointer;
     }
-    .tree svg {
+    .tree svg, .subscriber svg {
       width: 64px;
       height: 100%;
-    }
-    .subscriber svg {
-      width: 48px;
-      height: 48px;
     }
     .footer {
       text-align: center;
@@ -79,92 +75,112 @@
 <body>
 <h1>목요모리 木曜森</h1>
 <div class="forest" id="forest"></div>
-<div class="footer">목요일마다 느슨하게 숲을 가꿉니다.🌿<br>© 2025 mokyomori</div>
+<div class="footer">목요일마다 느슨하게 숲을 가꿉니다.🌿<br/>© 2025 mokyomori</div>
+<div class="subscriber" style="left: 71%; top: 32%;">
+<svg viewbox="0 0 64 100">
+<rect fill="#f4c20d" height="12" rx="6" width="44" x="10" y="70"></rect>
+<circle cx="12" cy="70" fill="#f4c20d" r="8"></circle>
+</svg>
+</div><div class="subscriber" style="left: 24%; top: 24%;">
+<svg viewbox="0 0 64 100">
+<circle cx="32" cy="20" fill="#f4c20d" r="12"></circle>
+<rect fill="#f4c20d" height="28" width="8" x="28" y="32"></rect>
+<line stroke="#f4c20d" stroke-width="6" x1="28" x2="20" y1="60" y2="80"></line>
+<line stroke="#f4c20d" stroke-width="6" x1="36" x2="44" y1="60" y2="80"></line>
+</svg>
+</div><script>
+    const forest = document.getElementById("forest");
+    const posts = [
+      { title: "love-tree", tag: "사랑" },
+      { title: "2025-07-04-start", tag: "사랑" },
+      { title: "summer-light", tag: "여름" },
+      { title: "care-memory", tag: "돌봄" },
+      { title: "like-a-movie", tag: "영화" },
+      { title: "body-language", tag: "몸" }
+    ];
+    const tagMap = {};
+    posts.forEach(post => {
+      if (!tagMap[post.tag]) tagMap[post.tag] = [];
+      tagMap[post.tag].push(post.title);
+    });
 
-<script>
-  const forest = document.getElementById("forest");
-  const posts = [
-    { title: "love-tree", tag: "사랑" },
-    { title: "2025-07-04-start", tag: "사랑" },
-    { title: "summer-light", tag: "여름" },
-    { title: "care-memory", tag: "돌봄" },
-    { title: "like-a-movie", tag: "영화" },
-    { title: "body-language", tag: "몸" }
-  ];
-  const tagMap = {};
-  posts.forEach(post => {
-    if (!tagMap[post.tag]) tagMap[post.tag] = [];
-    tagMap[post.tag].push(post.title);
-  });
+    const tagPositions = {
+      사랑: { x: 15, y: 20 },
+      여름: { x: 35, y: 50 },
+      돌봄: { x: 55, y: 40 },
+      영화: { x: 70, y: 25 },
+      몸: { x: 40, y: 70 }
+    };
+    const tagColors = {
+      사랑: "#7fc97f",
+      여름: "#66c2a5",
+      돌봄: "#b2df8a",
+      영화: "#a6d854",
+      몸: "#3288bd"
+    };
 
-  const tagPositions = {
-    사랑: { x: 15, y: 20 },
-    여름: { x: 35, y: 50 },
-    돌봄: { x: 55, y: 40 },
-    영화: { x: 70, y: 25 },
-    몸: { x: 40, y: 70 }
-  };
-  const tagColors = {
-    사랑: "#7fc97f",
-    여름: "#66c2a5",
-    돌봄: "#b2df8a",
-    영화: "#a6d854",
-    몸: "#3288bd"
-  };
+    Object.entries(tagMap).forEach(([tag, titles]) => {
+      const count = titles.length;
+      const pos = tagPositions[tag] || { x: Math.random() * 80 + 10, y: Math.random() * 60 + 20 };
+      const div = document.createElement("div");
+      div.className = "tree";
+      div.style.left = `${pos.x}%`;
+      div.style.top = `${pos.y}%`;
 
-  Object.entries(tagMap).forEach(([tag, titles]) => {
-    const count = titles.length;
-    const pos = tagPositions[tag] || { x: Math.random() * 80 + 10, y: Math.random() * 60 + 20 };
-    const div = document.createElement("div");
-    div.className = "tree";
-    div.style.left = `${pos.x}%`;
-    div.style.top = `${pos.y}%`;
+      const leafColor = tagColors[tag] || "#3ca370";
+      const leafRadius = 12 + (count - 1) * 4;
+      const trunkHeight = 20 + (count - 1) * 8;
+      div.innerHTML = `
+        <svg viewBox="0 0 64 100">
+          <rect x="28" y="${100 - trunkHeight}" width="8" height="${trunkHeight}" fill="#8b5a2b" />
+          <circle cx="32" cy="${100 - trunkHeight - leafRadius}" r="${leafRadius}" fill="${leafColor}" />
+        </svg>
+      `;
+      div.onclick = () => {
+        if (titles.length === 1) {
+          window.location.href = `posts/${encodeURIComponent(titles[0])}.html`;
+        } else {
+          const overlay = document.createElement("div");
+          overlay.className = "overlay";
+          const popup = document.createElement("div");
+          popup.className = "popup";
+          popup.innerHTML = `<h3>on ${tag}</h3><p>${titles.map(title => `• <a href="posts/${encodeURIComponent(title)}.html">${title}</a>`).join("<br>")}</p>`;
+          overlay.onclick = () => {
+            document.body.removeChild(popup);
+            document.body.removeChild(overlay);
+          };
+          document.body.appendChild(overlay);
+          document.body.appendChild(popup);
+        }
+      };
+      forest.appendChild(div);
+    });
 
-    const leafColor = tagColors[tag] || "#3ca370";
-    const leafRadius = 12 + (count - 1) * 4;
-    const trunkHeight = 20 + (count - 1) * 8;
-    div.innerHTML = `
+    // 구독자 아이콘
+    const subscriber = document.createElement("div");
+    subscriber.className = "subscriber";
+    subscriber.style.left = `${Math.random() * 80 + 10}%`;
+    subscriber.style.top = `${Math.random() * 60 + 20}%`;
+    subscriber.innerHTML = `
       <svg viewBox="0 0 64 100">
-        <rect x="28" y="${100 - trunkHeight}" width="8" height="${trunkHeight}" fill="#8b5a2b" />
-        <circle cx="32" cy="${100 - trunkHeight - leafRadius}" r="${leafRadius}" fill="${leafColor}" />
+        <circle cx="32" cy="20" r="18" fill="#f4c20d"/>
+        <rect x="24" y="38" width="16" height="42" fill="#f4c20d"/>
+        <rect x="10" y="38" width="12" height="8" fill="#f4c20d"/>
+        <rect x="42" y="38" width="12" height="8" fill="#f4c20d"/>
+        <rect x="16" y="80" width="12" height="20" transform="rotate(-30 16 80)" fill="#f4c20d"/>
+        <rect x="36" y="80" width="12" height="20" transform="rotate(30 36 80)" fill="#f4c20d"/>
       </svg>
     `;
-    div.onclick = () => {
-      if (titles.length === 1) {
-        window.location.href = `posts/${encodeURIComponent(titles[0])}.html`;
-      } else {
-        const overlay = document.createElement("div");
-        overlay.className = "overlay";
-        const popup = document.createElement("div");
-        popup.className = "popup";
-        popup.innerHTML = `<h3>on ${tag}</h3><p>${titles.map(title => `• <a href="posts/${encodeURIComponent(title)}.html">${title}</a>`).join("<br>")}</p>`;
-        overlay.onclick = () => {
-          document.body.removeChild(popup);
-          document.body.removeChild(overlay);
-        };
-        document.body.appendChild(overlay);
-        document.body.appendChild(popup);
-      }
-    };
-    forest.appendChild(div);
-  });
-
-  function createSubscriberIcon(x, y, svgContent) {
-    const div = document.createElement("div");
-    div.className = "subscriber";
-    div.style.left = `${x}%`;
-    div.style.top = `${y}%`;
-    div.innerHTML = svgContent;
-    div.onclick = () => {
+    subscriber.onclick = () => {
       const overlay = document.createElement("div");
       overlay.className = "overlay";
       const popup = document.createElement("div");
       popup.className = "email-popup";
-      popup.innerHTML = \`
+      popup.innerHTML = `
         <h3>숲의 소식을 메일로 받아보세요</h3>
         <input type="email" id="emailInput" placeholder="이메일 주소 입력">
         <button onclick="submitEmail()">구독하기</button>
-      \`;
+      `;
       overlay.onclick = () => {
         document.body.removeChild(popup);
         document.body.removeChild(overlay);
@@ -172,42 +188,37 @@
       document.body.appendChild(overlay);
       document.body.appendChild(popup);
     };
-    forest.appendChild(div);
-  }
+    forest.appendChild(subscriber);
+    // SVG 기반 사람 아이콘 두 개 삽입
+    const peopleIcons = ['<svg viewBox="0 0 64 100">\n  <circle cx="32" cy="16" r="12" fill="#f4c20d"/>\n  <rect x="28" y="28" width="8" height="24" fill="#f4c20d"/>\n  <rect x="22" y="52" width="8" height="18" transform="rotate(-20 22 52)" fill="#f4c20d"/>\n  <rect x="34" y="52" width="8" height="18" transform="rotate(20 34 52)" fill="#f4c20d"/>\n</svg>', '<svg viewBox="0 0 100 64">\n  <circle cx="16" cy="32" r="12" fill="#f4c20d"/>\n  <rect x="28" y="28" width="24" height="8" fill="#f4c20d"/>\n  <rect x="52" y="22" width="18" height="8" transform="rotate(20 52 22)" fill="#f4c20d"/>\n  <rect x="52" y="38" width="18" height="8" transform="rotate(-20 52 38)" fill="#f4c20d"/>\n</svg>'];
+    peopleIcons.forEach(svg => {
+      const person = document.createElement("div");
+      person.className = "subscriber";
+      person.style.left = `${Math.random() * 80 + 10}%`;
+      person.style.top = `${Math.random() * 60 + 20}%`;
+      person.style.width = "48px";
+      person.style.height = "48px";
+      person.innerHTML = svg;
+      person.onclick = subscriber.onclick;
+      forest.appendChild(person);
+    });
 
-  function submitEmail() {
-    const email = document.getElementById("emailInput").value;
-    if (email) {
-      fetch("https://script.google.com/macros/s/AKfycbxJIqOToDghEYoW1J-ZGOosbUt2qyH93z5d8HKxkHNdusntG2KkAp5oiNj9b44HOB6C/exec", {
-        method: "POST",
-        mode: "no-cors",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: \`email=\${encodeURIComponent(email)}\`
-      });
-      alert("감사합니다 :)");
-      document.querySelectorAll(".overlay, .email-popup").forEach(el => el.remove());
+
+    function submitEmail() {
+      const email = document.getElementById("emailInput").value;
+      if (email) {
+        fetch("https://script.google.com/macros/s/AKfycbxJIqOToDghEYoW1J-ZGOosbUt2qyH93z5d8HKxkHNdusntG2KkAp5oiNj9b44HOB6C/exec", {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: `email=${encodeURIComponent(email)}`
+        });
+        alert("감사합니다 :)");
+        document.querySelectorAll(".overlay, .email-popup").forEach(el => el.remove());
+      }
     }
-  }
-
-  // SVG 아이콘 정의 (걷는 사람 + 누워 있는 사람)
-  const walkingSvg = `
-    <svg viewBox="0 0 64 64">
-      <circle cx="32" cy="14" r="10" fill="#3ca370"/>
-      <rect x="28" y="24" width="8" height="20" fill="#3ca370"/>
-      <rect x="18" y="44" width="8" height="12" transform="rotate(-30 18 44)" fill="#3ca370"/>
-      <rect x="38" y="44" width="8" height="12" transform="rotate(30 38 44)" fill="#3ca370"/>
-    </svg>
-  `;
-
-  const lyingSvg = `
-    <svg viewBox="0 0 64 32">
-      <circle cx="14" cy="16" r="10" fill="#3ca370"/>
-      <rect x="24" y="12" width="28" height="8" fill="#3ca370"/>
-    </svg>
-  `;
-
-  createSubscriberIcon(20, 80, walkingSvg);
-  createSubscriberIcon(60, 85, lyingSvg);
+  
+    
 </script>
 </body>
 </html>
