@@ -1,10 +1,11 @@
 <!DOCTYPE html>
+
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>목요모리</title>
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>목요모리</title>
+<style>
     body {
       margin: 0;
       padding: 0;
@@ -19,17 +20,13 @@
     }
     .tree, .subscriber {
       position: absolute;
-      width: 48px;
-      height: 48px;
+      width: 64px;
+      height: 100px;
       cursor: pointer;
     }
-    .tree svg {
+    .tree svg, .subscriber svg {
       width: 64px;
       height: 100%;
-    }
-    .subscriber img {
-      width: 100%;
-      height: auto;
     }
     .footer {
       text-align: center;
@@ -76,10 +73,10 @@
   </style>
 </head>
 <body>
-  <h1>목요모리 木曜森</h1>
-  <div class="forest" id="forest"></div>
-  <div class="footer">목요일마다 느슨하게 숲을 가꿉니다.🌿<br>© 2025 mokyomori</div>
-  <script>
+<h1>목요모리 木曜森</h1>
+<div class="forest" id="forest"></div>
+<div class="footer">목요일마다 느슨하게 숲을 가꿉니다.🌿<br/>© 2025 mokyomori</div>
+<script>
     const forest = document.getElementById("forest");
     const posts = [
       { title: "love-tree", tag: "사랑" },
@@ -94,6 +91,7 @@
       if (!tagMap[post.tag]) tagMap[post.tag] = [];
       tagMap[post.tag].push(post.title);
     });
+
     const tagPositions = {
       사랑: { x: 15, y: 20 },
       여름: { x: 35, y: 50 },
@@ -108,6 +106,7 @@
       영화: "#a6d854",
       몸: "#3288bd"
     };
+
     Object.entries(tagMap).forEach(([tag, titles]) => {
       const count = titles.length;
       const pos = tagPositions[tag] || { x: Math.random() * 80 + 10, y: Math.random() * 60 + 20 };
@@ -115,6 +114,7 @@
       div.className = "tree";
       div.style.left = `${pos.x}%`;
       div.style.top = `${pos.y}%`;
+
       const leafColor = tagColors[tag] || "#3ca370";
       const leafRadius = 12 + (count - 1) * 4;
       const trunkHeight = 20 + (count - 1) * 8;
@@ -144,14 +144,63 @@
       forest.appendChild(div);
     });
 
-    const icons = ["walking.png", "lying.png"];
-    icons.forEach(icon => {
-      const sub = document.createElement("div");
-      sub.className = "subscriber";
-      sub.style.left = `${Math.random() * 80 + 10}%`;
-      sub.style.top = `${Math.random() * 60 + 20}%`;
-      sub.innerHTML = `<img src="${icon}" alt="subscribe">`;
-      sub.onclick = () => {
+    // 구독자 아이콘
+    const subscriber = document.createElement("div");
+    subscriber.className = "subscriber";
+    subscriber.style.left = `${Math.random() * 80 + 10}%`;
+    subscriber.style.top = `${Math.random() * 60 + 20}%`;
+    subscriber.innerHTML = `
+      <svg viewBox="0 0 64 100">
+        <circle cx="32" cy="20" r="18" fill="#f4c20d"/>
+        <rect x="24" y="38" width="16" height="42" fill="#f4c20d"/>
+        <rect x="10" y="38" width="12" height="8" fill="#f4c20d"/>
+        <rect x="42" y="38" width="12" height="8" fill="#f4c20d"/>
+        <rect x="16" y="80" width="12" height="20" transform="rotate(-30 16 80)" fill="#f4c20d"/>
+        <rect x="36" y="80" width="12" height="20" transform="rotate(30 36 80)" fill="#f4c20d"/>
+      </svg>
+    `;
+    subscriber.onclick = () => {
+      const overlay = document.createElement("div");
+      overlay.className = "overlay";
+      const popup = document.createElement("div");
+      popup.className = "email-popup";
+      popup.innerHTML = `
+        <h3>숲의 소식을 메일로 받아보세요</h3>
+        <input type="email" id="emailInput" placeholder="이메일 주소 입력">
+        <button onclick="submitEmail()">구독하기</button>
+      `;
+      overlay.onclick = () => {
+        document.body.removeChild(popup);
+        document.body.removeChild(overlay);
+      };
+      document.body.appendChild(overlay);
+      document.body.appendChild(popup);
+    };
+    
+
+    function submitEmail() {
+      const email = document.getElementById("emailInput").value;
+      if (email) {
+        fetch("https://script.google.com/macros/s/AKfycbxJIqOToDghEYoW1J-ZGOosbUt2qyH93z5d8HKxkHNdusntG2KkAp5oiNj9b44HOB6C/exec", {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: `email=${encodeURIComponent(email)}`
+        });
+        alert("감사합니다 :)");
+        document.querySelectorAll(".overlay, .email-popup").forEach(el => el.remove());
+      }
+    }
+  
+    // 이미지 기반 구독자 아이콘 추가
+    const subscriberImages = ["walking.png", "lying.png"];
+    subscriberImages.forEach(img => {
+      const div = document.createElement("div");
+      div.className = "subscriber";
+      div.style.left = `${Math.random() * 80 + 10}%`;
+      div.style.top = `${Math.random() * 60 + 20}%`;
+      div.innerHTML = `<img src="assets/${img}" width="48" height="75" style="display:block;">`;
+      div.onclick = () => {
         const overlay = document.createElement("div");
         overlay.className = "overlay";
         const popup = document.createElement("div");
@@ -168,22 +217,108 @@
         document.body.appendChild(overlay);
         document.body.appendChild(popup);
       };
-      forest.appendChild(sub);
+      forest.appendChild(div);
     });
 
-    function submitEmail() {
-      const email = document.getElementById("emailInput").value;
-      if (email) {
-        fetch("https://script.google.com/macros/s/AKfycbxJIqOToDghEYoW1J-ZGOosbUt2qyH93z5d8HKxkHNdusntG2KkAp5oiNj9b44HOB6C/exec", {
-          method: "POST",
-          mode: "no-cors",
-          headers: { "Content-Type": "application/x-www-form-urlencoded" },
-          body: `email=${encodeURIComponent(email)}`
-        });
-        alert("감사합니다 :)");
-        document.querySelectorAll(".overlay, .email-popup").forEach(el => el.remove());
-      }
-    }
-  </script>
+    const forest = document.getElementById("forest");
+    const posts = [
+      { title: "love-tree", tag: "사랑" },
+      { title: "2025-07-04-start", tag: "사랑" },
+      { title: "summer-light", tag: "여름" },
+      { title: "care-memory", tag: "돌봄" },
+      { title: "like-a-movie", tag: "영화" },
+      { title: "body-language", tag: "몸" }
+    ];
+    const tagMap = {};
+    posts.forEach(post => {
+      if (!tagMap[post.tag]) tagMap[post.tag] = [];
+      tagMap[post.tag].push(post.title);
+    });
+
+    const tagPositions = {
+      사랑: { x: 15, y: 20 },
+      여름: { x: 35, y: 50 },
+      돌봄: { x: 55, y: 40 },
+      영화: { x: 70, y: 25 },
+      몸: { x: 40, y: 70 }
+    };
+    const tagColors = {
+      사랑: "#7fc97f",
+      여름: "#66c2a5",
+      돌봄: "#b2df8a",
+      영화: "#a6d854",
+      몸: "#3288bd"
+    };
+
+    Object.entries(tagMap).forEach(([tag, titles]) => {
+      const count = titles.length;
+      const pos = tagPositions[tag] || { x: Math.random() * 80 + 10, y: Math.random() * 60 + 20 };
+      const div = document.createElement("div");
+      div.className = "tree";
+      div.style.left = `${pos.x}%`;
+      div.style.top = `${pos.y}%`;
+
+      const leafColor = tagColors[tag] || "#3ca370";
+      const leafRadius = 12 + (count - 1) * 4;
+      const trunkHeight = 20 + (count - 1) * 8;
+      div.innerHTML = `
+        <svg viewBox="0 0 64 100">
+          <rect x="28" y="${100 - trunkHeight}" width="8" height="${trunkHeight}" fill="#8b5a2b" />
+          <circle cx="32" cy="${100 - trunkHeight - leafRadius}" r="${leafRadius}" fill="${leafColor}" />
+        </svg>
+      `;
+      div.onclick = () => {
+        if (titles.length === 1) {
+          window.location.href = `posts/${encodeURIComponent(titles[0])}.html`;
+        } else {
+          const overlay = document.createElement("div");
+          overlay.className = "overlay";
+          const popup = document.createElement("div");
+          popup.className = "popup";
+          popup.innerHTML = `<h3>on ${tag}</h3><p>${titles.map(title => `• <a href="posts/${encodeURIComponent(title)}.html">${title}</a>`).join("<br>")}</p>`;
+          overlay.onclick = () => {
+            document.body.removeChild(popup);
+            document.body.removeChild(overlay);
+          };
+          document.body.appendChild(overlay);
+          document.body.appendChild(popup);
+        }
+      };
+      forest.appendChild(div);
+    });
+
+    // 구독자 아이콘
+    const subscriber = document.createElement("div");
+    subscriber.className = "subscriber";
+    subscriber.style.left = `${Math.random() * 80 + 10}%`;
+    subscriber.style.top = `${Math.random() * 60 + 20}%`;
+    subscriber.innerHTML = `
+      <svg viewBox="0 0 64 100">
+        <circle cx="32" cy="20" r="18" fill="#f4c20d"/>
+        <rect x="24" y="38" width="16" height="42" fill="#f4c20d"/>
+        <rect x="10" y="38" width="12" height="8" fill="#f4c20d"/>
+        <rect x="42" y="38" width="12" height="8" fill="#f4c20d"/>
+        <rect x="16" y="80" width="12" height="20" transform="rotate(-30 16 80)" fill="#f4c20d"/>
+        <rect x="36" y="80" width="12" height="20" transform="rotate(30 36 80)" fill="#f4c20d"/>
+      </svg>
+    `;
+    subscriber.onclick = () => {
+      const overlay = document.createElement("div");
+      overlay.className = "overlay";
+      const popup = document.createElement("div");
+      popup.className = "email-popup";
+      popup.innerHTML = `
+        <h3>숲의 소식을 메일로 받아보세요</h3>
+        <input type="email" id="emailInput" placeholder="이메일 주소 입력">
+        <button onclick="submitEmail()">구독하기</button>
+      `;
+      overlay.onclick = () => {
+        document.body.removeChild(popup);
+        document.body.removeChild(overlay);
+      };
+      document.body.appendChild(overlay);
+      document.body.appendChild(popup);
+    };
+    forest.appendChild(subscriber);</script>
 </body>
 </html>
