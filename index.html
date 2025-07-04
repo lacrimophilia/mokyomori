@@ -106,6 +106,17 @@
       몸: "#3288bd"
     };
 
+    function extractDate(title) {
+      const match = title.match(/^\d{4}-\d{2}-\d{2}/);
+      return match ? new Date(match[0]) : null;
+    }
+
+    let latestDate = null;
+    posts.forEach(p => {
+      const d = extractDate(p.title);
+      if (d && (!latestDate || d > latestDate)) latestDate = d;
+    });
+
     Object.entries(tagMap).forEach(([tag, titles]) => {
       const count = titles.length;
       const pos = tagPositions[tag] || { x: Math.random() * 80 + 10, y: Math.random() * 60 + 20 };
@@ -117,9 +128,11 @@
       const leafColor = tagColors[tag] || "#3ca370";
       const leafRadius = 12 + (count - 1) * 4;
       const trunkHeight = 20 + (count - 1) * 8;
+      const trunkColor = titles.some(t => extractDate(t)?.getTime() === latestDate?.getTime()) ? "#b9a074" : "#8b5a2b";
+
       div.innerHTML = `
         <svg viewBox="0 0 64 100">
-          <rect x="28" y="${100 - trunkHeight}" width="8" height="${trunkHeight}" fill="#8b5a2b" />
+          <rect x="28" y="${100 - trunkHeight}" width="8" height="${trunkHeight}" fill="${trunkColor}" />
           <circle cx="32" cy="${100 - trunkHeight - leafRadius}" r="${leafRadius}" fill="${leafColor}" />
         </svg>
       `;
@@ -142,56 +155,6 @@
       };
       forest.appendChild(div);
     });
-
-    // 걷는 사람 형태 아이콘 2개만 삽입
-    const personSVG = `<svg viewBox="0 0 64 100">
-      <circle cx="32" cy="16" r="10" fill="#f4c20d"/>
-      <rect x="28" y="26" width="8" height="32" fill="#f4c20d"/>
-      <line x1="28" y1="58" x2="20" y2="80" stroke="#f4c20d" stroke-width="6"/>
-      <line x1="36" y1="58" x2="44" y2="80" stroke="#f4c20d" stroke-width="6"/>
-    </svg>`;
-
-    for (let i = 0; i < 2; i++) {
-      const person = document.createElement("div");
-      person.className = "subscriber";
-      person.style.left = `${Math.random() * 80 + 10}%`;
-      person.style.top = `${Math.random() * 60 + 20}%`;
-      person.style.width = "48px";
-      person.style.height = "48px";
-      person.innerHTML = personSVG;
-      person.onclick = () => {
-        const overlay = document.createElement("div");
-        overlay.className = "overlay";
-        const popup = document.createElement("div");
-        popup.className = "email-popup";
-        popup.innerHTML = `
-          <h3>숲의 소식을 메일로 받아보세요</h3>
-          <input type="email" id="emailInput" placeholder="이메일 주소 입력">
-          <button onclick="submitEmail()">구독하기</button>
-        `;
-        overlay.onclick = () => {
-          document.body.removeChild(popup);
-          document.body.removeChild(overlay);
-        };
-        document.body.appendChild(overlay);
-        document.body.appendChild(popup);
-      };
-      forest.appendChild(person);
-    }
-
-    function submitEmail() {
-      const email = document.getElementById("emailInput").value;
-      if (email) {
-        fetch("https://script.google.com/macros/s/AKfycbxJIqOToDghEYoW1J-ZGOosbUt2qyH93z5d8HKxkHNdusntG2KkAp5oiNj9b44HOB6C/exec", {
-          method: "POST",
-          mode: "no-cors",
-          headers: { "Content-Type": "application/x-www-form-urlencoded" },
-          body: `email=${encodeURIComponent(email)}`
-        });
-        alert("고맙습니다. 함께 걸어요.");
-        document.querySelectorAll(".overlay, .email-popup").forEach(el => el.remove());
-      }
-    }
 </script>
 </body>
 </html>
