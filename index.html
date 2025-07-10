@@ -6,6 +6,7 @@
 <title>목요모리</title>
   <link href="https://fonts.googleapis.com/css2?family=Dongle&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
 
   <style>
     body {
@@ -69,15 +70,30 @@
       background: rgba(0, 0, 0, 0.3);
       z-index: 999;
     }
+    .email-popup h3 {
+      font-family: 'Pretendard', sans-serif;
+      font-size: 16px;
+      font-weight: 400;
+      margin-top: 0;
+    }
     input[type="email"] {
-      width: 100%;
+      width: calc(100% - 20px);
       padding: 8px;
       margin-top: 10px;
+      box-sizing: border-box;
+      font-family: 'Pretendard', sans-serif;
     }
-    button {
+     button {
       margin-top: 10px;
       padding: 8px 16px;
+      background-color: #ffffff;
+      color: #2e5f3e;
+      border: 2px solid #2e5f3e;
+      font-family: 'Pretendard', sans-serif;
+      font-size: 14px;
+      cursor: pointer;
     }
+ 
   </style>
 </head>
 <body>
