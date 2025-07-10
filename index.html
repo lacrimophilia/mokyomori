@@ -194,7 +194,7 @@
           overlay.className = "overlay";
           const popup = document.createElement("div");
           popup.className = "popup";
-          popup.innerHTML = `<h3> ✳️ ${tag}</h3><p>${titles.map(title => `• <a href="posts/${encodeURIComponent(title)}.html">${title}</a>`).join("<br>")}</p>`;
+          popup.innerHTML = `<h3>${tag}</h3><p>${titles.map(title => `• <a href="posts/${encodeURIComponent(title)}.html">${title}</a>`).join("<br>")}</p>`;
           overlay.onclick = () => {
             document.body.removeChild(popup);
             document.body.removeChild(overlay);
