@@ -86,11 +86,6 @@
   <div class="footer">목요일마다 느슨하게 숲을 가꿉니다.🌳<br/>© 2025 mokyomori</div>
 <script>
     const forest = document.getElementById("forest");
-  function getRandomGreen() {
-  const hue = Math.floor(Math.random() * 60) + 90; // 90~150도 사이의 초록색 계열
-  return `hsl(${hue}, 50%, 60%)`; // 채도 50%, 밝기 60%로 통일
-}
-
     const posts = [
       { title: "love-tree", tag: "사랑" },
       { title: "2025-07-03-start", tag: "사랑" },
@@ -111,14 +106,16 @@
       여름: { x: 35, y: 50 },
       돌봄: { x: 55, y: 40 },
       영화: { x: 70, y: 25 },
-      몸: { x: 40, y: 70 }
+      몸: { x: 40, y: 70 },
+      역설: { x: 62, y: 58 },
     };
     const tagColors = {
       사랑: "#7fc97f",
       여름: "#66c2a5",
       돌봄: "#b2df8a",
       영화: "#a6d854",
-      몸: "#3288bd"
+      몸: "#3288bd",
+      역설: "#a5d88d",
     };
 
     function extractDate(title) {
