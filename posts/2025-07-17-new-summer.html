@@ -32,10 +32,35 @@
       color: #2e5f3e;
       text-decoration: underline;
     }
-    @media screen and (max-width: 600px) {
-      .content {
-        width: 90%;
-        font-size: 1em;
+      .floating-img {
+      position: absolute;
+      z-index: -1;
+      opacity: 0.9;
+      border-radius: 12px;
+    }
+    .img1 { top: 180px; left: -180px; width: 130px; }
+    .img2 { top: 220px; right: -150px; width: 140px; }
+    .img3 { top: 260px; right: -180px; width: 130px; } /* krabi2 */
+    .img4 { top: 980px; left: -170px; width: 130px; }
+    .img5 { top: 1050px; right: -160px; width: 120px; }
+    .img6 { top: 1150px; left: -160px; width: 110px; } /* curry */
+    .img7 { top: 1250px; left: -150px; width: 100px; }
+    .img8 { top: 1400px; right: -140px; width: 120px; }
+    .img9 { top: 1550px; left: -130px; width: 120px; }
+    .img10 { top: 1700px; right: -130px; width: 130px; }
+    .img11 { top: 1800px; left: -120px; width: 110px; }
+    .img12 { top: 1900px; right: -140px; width: 110px; } /* erget2 */
+    .img13 { top: 1950px; left: -110px; width: 100px; } /* fruit1 */
+    .img14 { top: 2000px; right: -100px; width: 100px; } /* fruit2 */
+    .img15 { top: 2150px; left: -120px; width: 110px; }
+    .img16 { top: 2200px; right: -110px; width: 110px; } /* silmido2 */
+
+    @media screen and (max-width: 768px) {
+      .floating-img {
+        position: static;
+        display: block;
+        margin: 20px auto;
+        width: 80% !important;
       }
     }
   </style>
@@ -43,6 +68,26 @@
 <body>
   <div class="content">
     <h1>새 여름</h1>
+
+  <!-- 여백 이미지들 -->
+    <img src="img/mongolia.jpg" class="floating-img img1" />
+    <img src="img/krabi.jpg" class="floating-img img2" />
+    <img src="img/krabi2.jpg" class="floating-img img3" />
+    <img src="img/watermelon.jpg" class="floating-img img4" />
+    <img src="img/watermelon2.jpg" class="floating-img img5" />
+    <img src="img/curry.jpg" class="floating-img img6" />
+    <img src="img/potato.jpg" class="floating-img img7" />
+    <img src="img/soy-noodle.jpg" class="floating-img img8" />
+    <img src="img/corn.jpg" class="floating-img img9" />
+    <img src="img/melon.jpg" class="floating-img img10" />
+    <img src="img/egret.jpg" class="floating-img img11" />
+    <img src="img/egret2.jpg" class="floating-img img12" />
+    <img src="img/fruit1.jpg" class="floating-img img13" />
+    <img src="img/fruit2.jpg" class="floating-img img14" />
+    <img src="img/silmido.jpg" class="floating-img img15" />
+    <img src="img/silmido2.jpg" class="floating-img img16" />
+
+    <!-- 기존 글 본문은 그대로 유지 -->
     <p>
       여름을 가장 좋아하는 계절이라고 말하곤 했어요.<br>
       햇빛이 내리쬐어 피부에 닿는 열기는 바로 속속들이 들어가 말하는 것만 같았거든요. <br>
