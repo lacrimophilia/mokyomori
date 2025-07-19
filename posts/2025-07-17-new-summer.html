@@ -210,7 +210,10 @@
         el.style.top = pos.top + "px";
         el.style.left = pos.left + "px";
         el.style.right = "auto";
-      }
+      } else {
+    // 저장된 위치 없더라도 right 값 제거해서 초기 스타일 유지
+    el.style.right = "auto";
+  }
     }
 
     document.querySelectorAll(".float-img").forEach(makeDraggable);
