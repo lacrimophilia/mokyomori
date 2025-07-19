@@ -53,6 +53,7 @@
         margin: 20px auto;
         max-width: 100%;
         height: auto;
+        border-radius: 12px;
       }
     }
   </style>
@@ -168,5 +169,51 @@
       이 여름이 끝나면 나는 이 여름을 어떤 어렴풋한 모양으로 기억할까요?
     </p>
   </div>
+    <script>
+    function makeDraggable(el) {
+      let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+      el.onmousedown = dragMouseDown;
+
+      function dragMouseDown(e) {
+        e.preventDefault();
+        pos3 = e.clientX;
+        pos4 = e.clientY;
+        document.onmouseup = closeDragElement;
+        document.onmousemove = elementDrag;
+      }
+
+      function elementDrag(e) {
+        e.preventDefault();
+        pos1 = pos3 - e.clientX;
+        pos2 = pos4 - e.clientY;
+        pos3 = e.clientX;
+        pos4 = e.clientY;
+
+        const newTop = el.offsetTop - pos2;
+        const newLeft = el.offsetLeft - pos1;
+
+        el.style.top = newTop + "px";
+        el.style.left = newLeft + "px";
+        el.style.right = "auto";
+
+        localStorage.setItem(el.id, JSON.stringify({ top: newTop, left: newLeft }));
+      }
+
+      function closeDragElement() {
+        document.onmouseup = null;
+        document.onmousemove = null;
+      }
+
+      const saved = localStorage.getItem(el.id);
+      if (saved) {
+        const pos = JSON.parse(saved);
+        el.style.top = pos.top + "px";
+        el.style.left = pos.left + "px";
+        el.style.right = "auto";
+      }
+    }
+
+    document.querySelectorAll(".float-img").forEach(makeDraggable);
+  </script>
 </body>
 </html>
