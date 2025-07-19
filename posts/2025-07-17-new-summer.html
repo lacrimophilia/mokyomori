@@ -21,6 +21,7 @@
       color: #333;
       text-align: left;
       padding: 0 10px;
+      position: relative;
     }
     h1 {
       font-size: 1.5em;
@@ -32,12 +33,13 @@
       color: #2e5f3e;
       text-decoration: underline;
     }
-     .inline-img {
+    .inline-img {
       display: none;
     }
     .float-img {
       position: absolute;
       max-width: 200px;
+      opacity: 0.9;
       border-radius: 12px;
     }
     @media screen and (max-width: 600px) {
@@ -56,9 +58,13 @@
 <body>
   <div class="content">
     <h1>새 여름</h1>
-  <!-- 데스크탑 전용 여백 이미지 -->
-    <img src="img/krabi2.jpg" class="float-img" style="top: 420px; left: -240px;" alt="크라비">
-    <img src="img/watermelon2.jpg" class="float-img" style="top: 1650px; left: -200px;" alt="수박">
+
+    <!-- 데스크탑 전용 이미지 (float-img) -->
+    <img src="img/mongolia.jpg" class="float-img" style="top: 180px; left: -180px;” alt=“몽골”>
+    <img src="img/krabi.jpg" class="float-img" style="top: 220px; right: -150px;” alt=“끄라비">
+    <img src="img/krabi2.jpg" class="float-img" style="top: 420px; left: -240px;" alt=“끄라비2”>
+    <img src="img/watermelon.jpg" class="floating-img" style="top: 1050px; right: -160px;” alt=“수박”}
+    <img src="img/watermelon2.jpg" class="float-img" style="top: 1650px; left: -200px;" alt="수박2”>
     <img src="img/potato.jpg" class="float-img" style="top: 1800px; left: -220px;" alt="하지감자">
     <img src="img/curry.jpg" class="float-img" style="top: 1940px; right: -230px;" alt="카레">
     <img src="img/soy-noodle.jpg" class="float-img" style="top: 2090px; right: -220px;" alt="콩국수">
@@ -70,23 +76,9 @@
     <img src="img/fruit2.jpg" class="float-img" style="top: 2570px; right: -220px;" alt="과일2">
     <img src="img/silmido.jpg" class="float-img" style="top: 2650px; left: -230px;" alt="실미도">
     <img src="img/silmido2.jpg" class="float-img" style="top: 2730px; right: -230px;" alt="실미도2">
+    <img src="img/daisy.jpg" class="float-img" style="top: 2900px; right: -230px;" alt=“개망초”>
 
-    <!-- 모바일 전용 인라인 이미지 -->
-    <img src="img/krabi2.jpg" class="inline-img" alt="크라비">
-    <img src="img/watermelon2.jpg" class="inline-img" alt="수박">
-    <img src="img/potato.jpg" class="inline-img" alt="하지감자">
-    <img src="img/curry.jpg" class="inline-img" alt="카레">
-    <img src="img/soy-noodle.jpg" class="inline-img" alt="콩국수">
-    <img src="img/corn.jpg" class="inline-img" alt="옥수수">
-    <img src="img/melon.jpg" class="inline-img" alt="참외">
-    <img src="img/egret.jpg" class="inline-img" alt="백로">
-    <img src="img/egret2.jpg" class="inline-img" alt="백로2">
-    <img src="img/fruit1.jpg" class="inline-img" alt="과일1">
-    <img src="img/fruit2.jpg" class="inline-img" alt="과일2">
-    <img src="img/silmido.jpg" class="inline-img" alt="실미도">
-    <img src="img/silmido2.jpg" class="inline-img" alt="실미도2">
-
-    <!-- 기존 글 본문은 그대로 유지 -->
+<!-- 기존 글 본문은 그대로 유지 -->
     <p>
       여름을 가장 좋아하는 계절이라고 말하곤 했어요.<br>
       햇빛이 내리쬐어 피부에 닿는 열기는 바로 속속들이 들어가 말하는 것만 같았거든요. <br>
@@ -97,13 +89,17 @@
       추위는 지지리도 타면서 땀은 드물게도 흘려서 여름은 개인적으로 생존에도 유리하다고 볼 수 있죠. <br>
       그렇다 보니 여름에는 떠나곤 했어요. 여느 계절보다 가볍고 쉽게.<br>
       몽골의 초원을, 교토의 가모가와를 달리고, 크라비섬에서 물놀이를 하다가 <a href="https://youtu.be/F8n1h295izU?feature=shared" target="_blank">땡볕</a>의 해변에서 낮잠을 잤어요. <br><br>
+<img src="img/mongolia.jpg" class="inline-img" alt=“몽골”></p>
+<img src="img/krabi.jpg" class="inline-img" alt=“끄라비1”></p>
+<img src="img/krabi2.jpg" class="inline-img" alt="크라비2”></p>
 
-      그런 몇 개의 순간들. 순간 자체도 희미하고 화질 구린 스틸샷, 그때 한 생각의 어렴풋한 모양으로 저는 여름을 좋아한다고 생각했어요.<br>
-      그래서 여름이 떠나면 말했죠, 아 여름이 오면 좋겠다, 여름이 오면 난 살 것 같아, 하고. 겨울의 해답은 여름인냥 지냈죠. <br><br>
+    그런 몇 개의 순간들. 순간 자체도 희미하고 화질 구린 스틸샷, 그때 한 생각의 어렴풋한 모양으로 저는 여름을 좋아한다고 생각했어요.<br>
+    그래서 여름이 떠나면 말했죠, 아 여름이 오면 좋겠다, 여름이 오면 난 살 것 같아, 하고.<br>
+    겨울의 해답은 여름인냥 지냈죠. <br><br>
 
       그렇게 기다리던 여름이 다시 찾아왔어요.<br>
-      좋아하는 일들이 찾아와 가슴이 두근거리기로 명성이 높던 여름이었는데, 여름이 오고 제 표정이 기억에 남지 않는 날들을 지나 7월이 왔어요.<br> 
-      한 번 넘어지면 놀라는 표정을 짓고 두 번 넘어지면 아파 슬픈 표정을 짓고 세 번째는 걱정하는 표정을 짓고 그게 끝나지 않으면, 끝나지 않을 것만 같으면, 무슨 표정을 짓고 있을까요.<br> 
+      좋아하는 일들이 찾아와 가슴이 두근거리기로 명성이 높던 여름이었는데, 여름이 오고 제 표정이 기억에 남지 않는 날들을 지나 7월이 왔어요.<br>
+      한 번 넘어지면 놀라는 표정을 짓고 두 번 넘어지면 아파 슬픈 표정을 짓고 세 번째는 걱정하는 표정을 짓고 그게 끝나지 않으면, 끝나지 않을 것만 같으면, 무슨 표정을 짓고 있을까요.<br>
       내가 무슨 표정을 지었었는지 모르겠어요.  <br><br>
 
       게다가 날은 왜 7월부터 무지 더운지, 나를 깨우던 햇빛은 나를 겁나게 하더라고요.<br>
@@ -128,33 +124,44 @@
 
       여름을 새로 사랑하게 할 것들을 만났어요.<br>
       겨울에 발견하곤 여름에 봐야지 하고 간직해뒀던 &lt;수박&gt;을 보았어요.<br>
+      <img src="img/watermelon.jpg" class="inline-img" alt="수박"></p>
       참 한순간에, 이런 사사로운 드라마 한 편은 절대 사사롭지 않게 나를 이 여름에 붙잡았어요.<br>
       끝나지 않을 것 같은 여름방학에 나는 저 해피니스 산챠에 있는 동안 살 것 같았거든요. <br>
-      적어도 나에게는 살고 싶게 할 때 역시 최고의 배경은 여름이라는 걸 알았어요.<br><br>
+      적어도 나에게는 살고 싶게 할 때 역시 최고의 배경은 여름이라는 걸 알았어요.<br>
+      <img src="img/watermelon2.jpg" class="inline-img" alt="수박2”></p><br>
+  
+      하지감자는 정말 포슬포슬 부드러워요. 그냥 쪄서 마요네즈 핫소스 듬뿍 뿌려 먹어도 맛있어요.<br>
+<img src="img/potato.jpg" class="inline-img" alt="하지감자"></p><br>
 
-      하지감자는 정말 포슬포슬 부드러워요. 그냥 쪄서 마요네즈 핫소스 듬뿍 뿌려 먹어도 맛있어요.<br><br>
+   토마토, 가지, 감자를 함께 넣은 여름 야채 카레는 내가 하고도 감탄스러워서 몇 번을 먹었는지 몰라요.<br>
+<img src="img/curry.jpg" class="inline-img" alt="카레"></p><br>
 
-      토마토, 가지, 감자를 함께 넣은 여름 야채 카레는 내가 하고도 감탄스러워서 몇 번을 먹었는지 몰라요.<br><br>
+       콩국수를 콩물을 사서 해 먹으면 반 값도 안 드는데 오이를 썰고 얼린 얼음을 올려놓으면 아- 이건 여름의 특권이오.<br>
+<img src="img/soy-noodle.jpg" class="inline-img" alt="콩국수"></p><br>
+      
+      박대구이를 처음 먹었는데 아주 쫄깃해요. 살이 적어서 인당 두 마리는 구워야 해요. <br>
+<img src="img/corn.jpg" class="inline-img" alt="옥수수"></p><br>
 
-      콩국수를 콩물을 사서 해 먹으면 반 값도 안 드는데 오이를 썰고 얼린 얼음을 올려놓으면 아- 이건 여름의 특권이오.<br><br>
+ 사 먹지는 않아도 길가에서 옥수수를 파는 풍경이 좋아요. 그 사이를 지나쳐 참외를 사다가는 깎는 법을 익혀요. <br>
+<img src="img/melon.jpg" class="inline-img" alt="참외"></p><br>
 
-      박대구이를 처음 먹었는데 아주 쫄깃해요. 살이 적어서 인당 두 마리는 구워야 해요. <br><br>
+   백로가 나뭇가지만한 다리로 걷는 걸 보면 좋아요. 백로는 날 때 목을 접고 날아요. <br>
+<img src="img/egret.jpg" class="inline-img" alt="백로"></p><br>
+<img src="img/egret2.jpg" class="inline-img" alt="백로2"></p><br>
 
-      사 먹지는 않아도 길가에서 옥수수를 파는 풍경이 좋아요. 그 사이를 지나쳐 참외를 사다가는 깎는 법을 익혀요. <br><br>
+      실미도에 가면 섬의 바다를 느껴요. 오늘 여기 모인 사람들끼리 작은 원시사회를 이룬것만 같아요.<br>
 
-      백로가 나뭇가지만한 다리로 걷는 걸 보면 좋아요. 백로는 날 때 목을 접고 날아요. <br><br>
-
-      실미도에 가면 섬의 바다를 느껴요. 왠지 여기 모인 사람들끼리 작은 원시사회가 될 것만 같이.<br><br>
-
-      달걀후라이처럼 생긴 꽃이름은 개망초라는 걸 알았어요.<br>
-      전쟁으로 황폐해진 땅에도 개망초가 피어있었대요. 개는 주로 안 좋은 거에 붙이기도 하고, 망할 망자도 아니지만, 내멋대로 기억해둬요. 개망해도 피어있던 곳.<br><br>
+    달걀후라이처럼 생긴 꽃이름은 개망초라는 걸 알았어요.<br>
+      전쟁으로 황폐해진 땅에도 개망초가 피어있었대요. 개는 주로 안 좋은 거에 붙이기도 하고, 망할 망자도 아니지만, 내멋대로 기억해둬요.<br> 
+   개망해도 피어있던 꽃.<br>
+<img src="img/daisy.jpg" class="inline-img" alt=“개망초”></p><br>
 
       여름을 새로 좋아할 것도 같아요.<br>
       관성으로 남아 업데이트 되지 않은 생각은 아니었을까 했는데<br>
       그 관성 덕분에 여름을 새로 좋아하게 하는 것들도 더 찾을 수 있지 않을까 싶어요<br>
       어쩌면 무언가를 좋아하는 일은 근육을 키우나봐요<br><br>
 
-      며칠이고 무덥고 비가 오면 질리거나 지겨운 감정이 들지만, 때로 갑자기 문득 새로 사랑할 수 있으면 좋겠어요. 결국 내 모든 내가 아닌 것에 대한 감정은 투사인가. 그런 사랑이 가능하다는 걸 믿고 싶어요. 아직 말로만 할 줄 알고 진짜인지 모르겠는 게 많거든요. 아직 못 믿겠어서, 어려워서. <br><br>
+      며칠이고 무덥고 비가 오면 질리거나 지겨운 감정이 들지만, 때로 갑자기 문득 새로 사랑할 수 있으면 좋겠어요. 그냥 그런 사랑이 가능하다고 믿고 싶어요. 아직 말로만 할 줄 알고 진짜인지 모르겠는 게 많거든요. 아직 못 믿겠어서, 어려워서. <br><br>
 
       이 여름이 끝나면 나는 이 여름을 어떤 어렴풋한 모양으로 기억할까요?
     </p>
