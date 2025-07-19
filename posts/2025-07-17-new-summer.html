@@ -63,20 +63,20 @@
     <h1>새 여름</h1>
 
     <!-- 데스크탑 전용 이미지 (float-img) -->
-    <img src="img/mongolia.jpg" class="float-img" style="top: 280px; left: -200px;" alt="몽골">
-    <img src="img/krabi.jpg" class="float-img" style="top: 220px; right: -150px;" alt="끄라비">
-    <img src="img/krabi2.jpg" class="float-img" style="top: 390px; right: -40px;" alt="끄라비2">
-    <img src="img/watermelon.jpg" class="float-img" style="top: 1250px; right: 0px;" alt="수박">
-    <img src="img/watermelon2.jpg" class="float-img" style="top: 1350px; left: -240px;" alt="수박2">
-    <img src="img/potato.jpg" class="float-img" style="top: 1420px; right: +30px;" alt="하지감자">
-    <img src="img/curry.jpg" class="float-img" style="top: 1440px; right: -120px;" alt="카레">
-    <img src="img/soy-noodle.jpg" class="float-img" style="top: 1590px; right: -100px;" alt="콩국수">
-    <img src="img/corn.jpg" class="float-img" style="top: 1620px; left: -240px;" alt="옥수수">
-    <img src="img/melon.jpg" class="float-img" style="top: 1690px; left: -200px;" alt="참외">
-    <img src="img/egret.jpg" class="float-img" style="top: 1750px; left: -220px;" alt="백로">
-    <img src="img/egret2.jpg" class="float-img" style="top: 1850px; right: -120px;" alt="백로2">
-    <img src="img/silmido.jpg" class="float-img" style="top: 1950px; left: -230px;" alt="실미도">
-    <img src="img/daisy.jpg" class="float-img" style="top: 2100px; right: +60px;" alt="개망초">
+    <img id="img1" src="img/mongolia.jpg" class="float-img" style="top: 280px; left: -200px;" alt="몽골">
+    <img id="img2" src="img/krabi.jpg" class="float-img" style="top: 220px; right: -150px;" alt="끄라비">
+    <img id="img3" src="img/krabi2.jpg" class="float-img" style="top: 390px; right: -40px;" alt="끄라비2">
+    <img id="img4" src="img/watermelon.jpg" class="float-img" style="top: 1250px; right: 0px;" alt="수박">
+    <img id="img5" src="img/watermelon2.jpg" class="float-img" style="top: 1350px; left: -240px;" alt="수박2">
+    <img id="img6" src="img/potato.jpg" class="float-img" style="top: 1420px; right: +30px;" alt="하지감자">
+    <img id="img7" src="img/curry.jpg" class="float-img" style="top: 1440px; right: -120px;" alt="카레">
+    <img id="img8" src="img/soy-noodle.jpg" class="float-img" style="top: 1590px; right: -100px;" alt="콩국수">
+    <img id="img9" src="img/corn.jpg" class="float-img" style="top: 1620px; left: -240px;" alt="옥수수">
+    <img id="img10" src="img/melon.jpg" class="float-img" style="top: 1690px; left: -200px;" alt="참외">
+    <img id="img11" src="img/egret.jpg" class="float-img" style="top: 1750px; left: -220px;" alt="백로">
+    <img id="img12" src="img/egret2.jpg" class="float-img" style="top: 1850px; right: -120px;" alt="백로2">
+    <img id="img13" src="img/silmido.jpg" class="float-img" style="top: 1950px; left: -230px;" alt="실미도">
+    <img id="img14" src="img/daisy.jpg" class="float-img" style="top: 2100px; right: +60px;" alt="개망초">
 
 <!-- 기존 글 본문은 그대로 유지 -->
     <p>
@@ -211,7 +211,11 @@
         el.style.left = pos.left + "px";
         el.style.right = "auto";
       } else {
-    // 저장된 위치 없더라도 right 값 제거해서 초기 스타일 유지
+    const rect = el.getBoundingClientRect();
+    const containerRect = document.querySelector('.content').getBoundingClientRect();
+    const computedLeft = rect.left - containerRect.left;
+
+    el.style.left = computedLeft + "px";
     el.style.right = "auto";
   }
     }
