@@ -73,6 +73,33 @@
       .citation:focus::after {
         opacity: 1;
       }
+
+          .tooltip-box {
+        display: none;
+        position: absolute;
+        bottom: 120%;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #e6f0ea;
+        color: #333;
+        padding: 6px 10px;
+        border-radius: 6px;
+        font-size: 0.9em;
+        font-weight: normal;
+        white-space: nowrap;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+        z-index: 10;
+        opacity: 0;
+        transition: opacity 0.2s;
+        pointer-events: none;
+      }
+      
+      .citation:hover .tooltip-box {
+        display: block;
+        opacity: 1;
+        pointer-events: auto;
+      }
+
     @media screen and (max-width: 600px) {
 
       .inline-img {
@@ -124,7 +151,8 @@
       렌은 엄마에게 했어요.<br><br>
       
       어른이 되면 어떤 게 달라질까요?<br>
-      내가 좋아하는 한 어른은 어른은 희망을 버리고 그리고 힘낼 수 있는 사람일 수 있겠다고 했어요.<span class="citation" data-tooltip="이동진, https://youtu.be/wpjU7CTm7Qk?feature=shared&t=1229">*</span><br><br>
+      내가 좋아하는 한 어른은 어른은 희망을 버리고 그리고 힘낼 수 있는 사람일 수 있겠다고 했어요.<span class="citation">*<span class="tooltip-box">이동진, <a href="https://youtu.be/wpjU7CTm7Qk?feature=shared&t=1229" target="_blank"></a>
+  </span></span><br><br>
       
       나는 ‘그럼에도 불구하고’라는 접속어를 좋아했어요.<br>
       힘들어요. 그럼에도 불구하고 희망을 깨물어요.<br><br>
