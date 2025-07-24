@@ -270,6 +270,28 @@
     }
 
     document.querySelectorAll(".float-img").forEach(makeDraggable);
+
+  // 모바일용 터치 toggle
+  document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".citation").forEach(function (el) {
+      el.addEventListener("click", function (e) {
+        // 데스크탑에서는 무시
+        if (window.innerWidth > 768) return;
+
+        // toggle
+        e.stopPropagation(); // 다른 클릭 막기
+        el.classList.toggle("active");
+      });
+    });
+
+    // 바깥 클릭 시 닫기
+    document.addEventListener("click", function () {
+      document.querySelectorAll(".citation.active").forEach(function (el) {
+        el.classList.remove("active");
+      });
+    });
+  });
+
   </script>
 </body>
 </html>
