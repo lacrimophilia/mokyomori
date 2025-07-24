@@ -69,11 +69,17 @@
         z-index: 10;
       }
       
+      /* 데스크탑용 hover */
       .citation:hover::after,
       .citation:focus::after {
         opacity: 1;
       }
-
+      
+      /* 모바일용: active 클래스 있을 때 보여주기 */
+      .citation.active::after {
+        opacity: 1;
+        pointer-events: auto;
+      }
     @media screen and (max-width: 600px) {
 
       .inline-img {
@@ -162,8 +168,27 @@
       おめでとうございます ~~~~~~~~~~~~~<br><br>
     </p>
   </div>
-    <script>
-   
-  </script>
+<script>
+  // 모바일용 터치 toggle
+  document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".citation").forEach(function (el) {
+      el.addEventListener("click", function (e) {
+        // 데스크탑에서는 무시
+        if (window.innerWidth > 768) return;
+
+        // toggle
+        e.stopPropagation(); // 다른 클릭 막기
+        el.classList.toggle("active");
+      });
+    });
+
+    // 바깥 클릭 시 닫기
+    document.addEventListener("click", function () {
+      document.querySelectorAll(".citation.active").forEach(function (el) {
+        el.classList.remove("active");
+      });
+    });
+  });
+</script>
 </body>
 </html>
