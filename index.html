@@ -80,39 +80,36 @@
       margin-bottom: 0 0 4px 0;
     }
     
-    .input-field {
-  width: calc(100% - 16px);
-  padding: 4px;
-  margin-top: 8px;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  font-family: 'Pretendard', sans-serif;
-  font-size: 14px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
+      .input-field {
+    width: calc(100% - 16px);
+    padding: 4px;
+    margin-top: 8px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: 'Pretendard', sans-serif;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+      }
 
-.email-popup button {
-  display: block;
-  margin-left: auto; /* 버튼만 오른쪽 정렬 */
-  margin-right: 0;
-  margin-top: 10px;
-  padding: 4px 8px;
-  background-color: transparent;
-  color: #2e5f3e;
-  border: none;
-  font-family: 'Pretendard', sans-serif;
-  font-size: 12px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.email-popup button:hover {
-  background-color: #2e5f3e;
-  color: #ffffff;
-  border-radius: 3px;
-}
+    .email-popup button {
+      margin-top: 10px;
+      padding: 4px 8px;
+      background-color: transparent;  /* 기본은 테두리X, 투명 배경 */
+      color: #2e5f3e;
+      border: none;                   /* 테두리 제거 */
+      font-family: 'Pretendard', sans-serif;
+      font-size: 12px;
+      cursor: pointer;
+      float: right;                   /* 오른쪽 정렬 */
+      transition: all 0.3s ease;
+    }
+    .email-popup button:hover {
+      background-color: #2e5f3e;
+      color: white;
+    }
     
      a {
       color: #2e5f3e;
@@ -131,12 +128,12 @@
     .info-icon {
       cursor: pointer;
       display: inline-block;
-      font-size: 0.5em; 
+      font-size: 0.4em; 
       color: #2e5f3e;
       border: 1px solid #2e5f3e;
       border-radius: 50%;
       padding: 0 3px; 
-      margin-left: 6px;
+      margin-left: 4px;
       vertical-align: middle;
       transition: background-color 0.3s, color 0.3s;
     }
@@ -145,6 +142,7 @@
       background-color: #2e5f3e;
       color: white;
     }
+    
     h1 {
       position: relative; /* intro-panel 위치 기준점 */
     }
