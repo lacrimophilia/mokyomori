@@ -90,6 +90,34 @@
         opacity: 1;
         pointer-events: auto;
       }
+    /* PC & 모바일 공통 스타일 */
+  .forest-btn {
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+    color: #2e5f3e;
+    background-color: transparent;
+    border-radius: 50px; /* 세로형 타원형 버튼 */
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+
+  /* PC 전용: 좌측 하단 고정 */
+  @media screen and (min-width: 601px) {
+    .forest-btn {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      font-size: 1.8em; /* 森 크기 */
+      padding: 14px 20px; /* 타원형 비율 */
+      z-index: 1000;
+    }
+    .forest-btn:hover {
+      background-color: #2e5f3e;
+      color: white;
+    }
+  }
     
     @media screen and (max-width: 600px) {
       .content {
@@ -106,6 +134,30 @@
         height: auto;
         border-radius: 12px;
       }
+      .forest-btn {
+    position: relative;
+    display: inline-flex;      /* 글자 감싸는 버튼 형태 유지 */
+    align-items: center;       /* 세로 가운데 정렬 */
+    justify-content: center;   /* 가로 가운데 정렬 */
+
+    margin: 0 15px 0 auto;     /* 본문 끝 + 오른쪽 정렬 */
+    float: right;              /* 오른쪽 끝으로 붙이기 */
+    
+    width: 40px;
+    height: 40px;
+    font-size: 1.6em;
+    border-radius: 50%;
+    background-color: transparent;
+    color: #2e5f3e;
+    border: none;
+    transition: all 0.3s ease;
+  }
+        
+  .forest-btn:hover,
+  .forest-btn:active {         /* hover 또는 클릭 시 스타일 */
+    background-color: #2e5f3e; /* 배경 초록 */
+    color: white;              /* 글자 흰색 */
+    }
     }
   </style>
 </head>
@@ -218,6 +270,7 @@
       이 여름이 끝나면 나는 이 여름을 어떤 어렴풋한 모양으로 기억할까요?
     </p>
   </div>
+  <a href="../index.html" class="forest-btn">森</a>
     <script>
     function makeDraggable(el) {
       let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
