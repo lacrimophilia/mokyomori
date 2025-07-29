@@ -79,25 +79,41 @@
       margin-top: 0; 
       margin-bottom: 0 0 4px 0;
     }
-  input[type="email"] {
-      width: calc(100% - 16px);
-      padding: 4px;
-      margin-top: 0px; 
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
-      font-family: 'Pretendard', sans-serif;
-    }
-     button {
-      margin-top: 10px;
-      padding: 4px 8px;
-      background-color: #ffffff;
-      color: #2e5f3e;
-      border: 2px solid #2e5f3e;
-      font-family: 'Pretendard', sans-serif;
-      font-size: 12px;
-      cursor: pointer;
-    }
+    
+    .input-field {
+  width: calc(100% - 16px);
+  padding: 4px;
+  margin-top: 8px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: 'Pretendard', sans-serif;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+
+.button {
+  display: block;
+  margin-left: auto; /* 버튼만 오른쪽 정렬 */
+  margin-right: 0;
+  margin-top: 10px;
+  padding: 4px 8px;
+  background-color: transparent;
+  color: #2e5f3e;
+  border: none;
+  font-family: 'Pretendard', sans-serif;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #2e5f3e;
+  color: #ffffff;
+  border-radius: 3px;
+}
+    
      a {
       color: #2e5f3e;
       text-decoration: none;
@@ -269,7 +285,8 @@
 
 
     function submitEmail() {
-      const email = document.getElementById("emailInput").value;
+    const name = document.getElementById("nameInput").value.trim();
+    const email = document.getElementById("emailInput").value.trim();
       if (email) {
         fetch("https://script.google.com/macros/s/AKfycbxZRfpwha3ljvKzP_rZp7RQHy0OuKB4K3plTp_c44TWZ_H0LUzjsFLDOmc4YlRchOx2/exec", {
           method: "POST",
@@ -277,7 +294,7 @@
           headers: { "Content-Type": "application/x-www-form-urlencoded" },
           body: `name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}`
         });
-        alert("${name}, 고마워요!");
+        alert("${name}, 반가워요!");
         document.querySelectorAll(".overlay, .email-popup").forEach(el => el.remove());
       }
     }
@@ -338,9 +355,8 @@ for (let i = 0; i < 2; i++) {
     popup.innerHTML = `
     
       <h3>숲 소식 들고 찾아갈게요</h3>
-      
-       <input type="text" id="nameInput" placeholder="어디로 가면 될까요 .. 이를테면 메일">
-    <input type="email" id="emailInput" placeholder="어떻게 불리길 원하나요 .. 이를테면 이름">
+    <input type="email" id="emailInput" class="input-field" placeholder="어디로 가면 될까요 .. 이를테면 메일">
+    <input type="text" id="nameInput" class="input-field" placeholder="어떻게 불리길 원하나요 .. 이를테면 이름">
     <button onclick="submitSubscription()">구독하기</button>
     `;
     overlay.onclick = () => {
