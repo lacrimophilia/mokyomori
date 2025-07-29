@@ -112,61 +112,50 @@
       margin: 0 0 10px 0;
     }
 
-.info-icon {
-  cursor: pointer;
-  display: inline-block;
-  font-size: 0.5em; 
-  color: #2e5f3e;
-  border: 1px solid #2e5f3e;
-  border-radius: 50%;
-  padding: 0 3px; 
-  margin-left: 6px;
-  vertical-align: middle;
-  transition: background-color 0.3s, color 0.3s;
-}
-
-.info-icon:hover {
-  background-color: #2e5f3e;
-  color: white;
-}
-h1 {
-  position: relative; /* intro-panel 위치 기준점 */
-}
-
-.intro-panel {
-  position: absolute;
-  top: 100px; 
-  left: 50%;
-  transform: translateX(-50%);
-  width: 90%;
-  max-width: 600px;
-  background: rgba(46, 95, 62, 0.95);
-  color: white;
-  padding: 0 20px;
-  border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  overflow: hidden;
-  max-height: 0;
-  opacity: 0;
-  transition: max-height 1s ease, opacity 1s ease, padding 1s ease;
-}
-
-.intro-panel.open {
-  padding: 20px;
-  max-height: 400px;
-  opacity: 1;
-}
-
-
-.close-btn {
-  cursor: pointer;
-  text-decoration: underline dotted; /* 점선 밑줄 */
-  color: #fff;
-  font-size: 0.85em;
-  margin-top: 10px;
-  text-align: right; /* 오른쪽 정렬 */
-  display: block; /* 줄 단독 차지 */
-}
+    .info-icon {
+      cursor: pointer;
+      display: inline-block;
+      font-size: 0.5em; 
+      color: #2e5f3e;
+      border: 1px solid #2e5f3e;
+      border-radius: 50%;
+      padding: 0 3px; 
+      margin-left: 6px;
+      vertical-align: middle;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    
+    .info-icon:hover {
+      background-color: #2e5f3e;
+      color: white;
+    }
+    h1 {
+      position: relative; /* intro-panel 위치 기준점 */
+    }
+    
+    .intro-panel {
+      position: absolute;
+      top: 100px; 
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90%;
+      max-width: 600px;
+      background: rgba(46, 95, 62, 0.95);
+      color: white;
+      padding: 0 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      overflow: hidden;
+      max-height: 0;
+      opacity: 0;
+      transition: max-height 1s ease, opacity 1s ease, padding 1s ease;
+    }
+    
+    .intro-panel.open {
+      padding: 20px;
+      max-height: 400px;
+      opacity: 1;
+    }
 
   </style>
 </head>
@@ -179,7 +168,6 @@ h1 {
   <p> 반갑습니다. 이곳은 목요모리입니다.<br>
     모리는 일본어로 숲입니다. 목요일마다 느슨하게 자라는 글의 숲을 시도합니다.<br>
   가끔 들러서 산책해보세요.</p>
- <p class="close-btn" onclick="toggleIntro()">다 읽었어요</p>
   </div>
   
 <script>
@@ -279,44 +267,17 @@ h1 {
       <line x1="36" y1="58" x2="44" y2="80" stroke="#f4c20d" stroke-width="6"/>
     </svg>`;
 
-    for (let i = 0; i < 2; i++) {
-      const person = document.createElement("div");
-      person.className = "subscriber";
-      person.style.left = `${Math.random() * 80 + 10}%`;
-      person.style.top = `${Math.random() * 60 + 20}%`;
-      person.style.width = "48px";
-      person.style.height = "48px";
-      person.innerHTML = personSVG;
-      person.onclick = () => {
-        const overlay = document.createElement("div");
-        overlay.className = "overlay";
-        const popup = document.createElement("div");
-        popup.className = "email-popup";
-        popup.innerHTML = `
-          <h3>숲의 소식을 메일로 받아보세요</h3>
-          <input type="email" id="emailInput" placeholder="이메일 주소 입력">
-          <button onclick="submitEmail()">구독하기</button>
-        `;
-        overlay.onclick = () => {
-          document.body.removeChild(popup);
-          document.body.removeChild(overlay);
-        };
-        document.body.appendChild(overlay);
-        document.body.appendChild(popup);
-      };
-      forest.appendChild(person);
-    }
 
     function submitEmail() {
       const email = document.getElementById("emailInput").value;
       if (email) {
-        fetch("https://script.google.com/macros/s/AKfycbxJIqOToDghEYoW1J-ZGOosbUt2qyH93z5d8HKxkHNdusntG2KkAp5oiNj9b44HOB6C/exec", {
+        fetch("https://script.google.com/macros/s/AKfycbxZRfpwha3ljvKzP_rZp7RQHy0OuKB4K3plTp_c44TWZ_H0LUzjsFLDOmc4YlRchOx2/exec", {
           method: "POST",
           mode: "no-cors",
           headers: { "Content-Type": "application/x-www-form-urlencoded" },
-          body: `email=${encodeURIComponent(email)}`
+          body: `name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}`
         });
-        alert("고맙습니다. 힘입니다!");
+        alert("${name}, 고마워요!");
         document.querySelectorAll(".overlay, .email-popup").forEach(el => el.remove());
       }
     }
@@ -375,8 +336,14 @@ for (let i = 0; i < 2; i++) {
     const popup = document.createElement("div");
     popup.className = "email-popup";
     popup.innerHTML = `
-      <h3>숲의 소식을 메일로 받아보세요</h3>
-      <input type="email" id="emailInput" placeholder="이메일 주소 입력">
+    
+      <h3>숲 소식 들고 찾아갈게요</h3>
+      
+       <input type="text" id="nameInput" placeholder="어디로 가면 될까요 .. 이를테면 메일">
+    <input type="email" id="emailInput" placeholder="어떻게 불리길 원하나요 .. 이를테면 이름">
+    <button onclick="submitSubscription()">구독하기</button>
+    
+      <input type="email" id="emailInput" placeholder="이메일 주소 좀 여쭙시다">
       <button onclick="submitEmail()">구독하기</button>
     `;
     overlay.onclick = () => {
