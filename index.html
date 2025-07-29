@@ -326,6 +326,74 @@ h1 {
   panel.classList.toggle("open");
 }
 
+  function moveSubscriberFree(subscriber) {
+  let angle = Math.random() * 2 * Math.PI; // 초기 랜덤 각도
+  let speed = 0.05; // 속도 (작을수록 느림)
+
+  function animate() {
+    let left = parseFloat(subscriber.style.left);
+    let top = parseFloat(subscriber.style.top);
+
+    // 각도에 맞춰 이동
+    left += Math.cos(angle) * speed;
+    top += Math.sin(angle) * speed;
+
+    // 경계에 닿으면 방향 튼다
+    if (left < 5 || left > 85) {
+      angle = Math.PI - angle; // X 반전
+    }
+    if (top < 5 || top > 85) {
+      angle = -angle; // Y 반전
+    }
+
+    // 이동 방향을 천천히 랜덤하게 변화 (휘청거림)
+    angle += (Math.random() - 0.5) * 0.05;
+
+    // 위치 적용
+    subscriber.style.left = `${left}%`;
+    subscriber.style.top = `${top}%`;
+
+    requestAnimationFrame(animate);
+  }
+
+  animate();
+}
+
+// 걷는 사람 아이콘 생성 + 애니메이션 적용
+for (let i = 0; i < 2; i++) {
+  const person = document.createElement("div");
+  person.className = "subscriber";
+  person.style.left = `${Math.random() * 80 + 10}%`;
+  person.style.top = `${Math.random() * 60 + 20}%`;
+  person.style.width = "48px";
+  person.style.height = "48px";
+  person.innerHTML = personSVG;
+
+  person.onclick = () => {
+    const overlay = document.createElement("div");
+    overlay.className = "overlay";
+    const popup = document.createElement("div");
+    popup.className = "email-popup";
+    popup.innerHTML = `
+      <h3>숲의 소식을 메일로 받아보세요</h3>
+      <input type="email" id="emailInput" placeholder="이메일 주소 입력">
+      <button onclick="submitEmail()">구독하기</button>
+    `;
+    overlay.onclick = () => {
+      document.body.removeChild(popup);
+      document.body.removeChild(overlay);
+    };
+    document.body.appendChild(overlay);
+    document.body.appendChild(popup);
+  };
+
+  forest.appendChild(person);
+
+  // 천천히 + 자유롭게 움직이는 애니메이션 시작
+  moveSubscriberFree(person);
+}
+
+
 </script>
 </body>
 </html>
