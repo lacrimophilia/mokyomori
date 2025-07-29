@@ -119,32 +119,27 @@
   }
     
  
-      @media screen and (max-width: 600px) {  /* 모바일 화면에만 적용 */
-  .forest-btn {
-    position: relative;       /* 문서 흐름 기준 위치 (본문 끝에 위치) */
-    display: inline-flex;     /* inline 요소 + flex 정렬 (원형/타원 모양 유지) */
-    align-items: center;      /* 세로 가운데 정렬 */
-    justify-content: center;  /* 가로 가운데 정렬 */
+    @media screen and (max-width: 600px) {  /* 모바일 화면에만 적용 */
+
+    .forest-btn {
+    position: relative;
+    display: inline-flex;      /* 글자 감싸는 버튼 형태 유지 */
+    align-items: center;       /* 세로 가운데 정렬 */
+    justify-content: center;   /* 가로 가운데 정렬 */
+
+    margin: 10px 0 0 auto;     /* 본문 끝 + 오른쪽 정렬 */
+    float: right;              /* 오른쪽 끝으로 붙이기 */
     
-    margin-top: 10px;         /* 본문과 버튼 간격 줄임 */
-    margin-left: auto;        /* 오른쪽 정렬을 위해 왼쪽 마진 자동 */
-    margin-right: 0;          /* 오른쪽 마진 없음 */
-
-    text-align: right;        /* 텍스트 오른쪽 정렬 (inline-flex라 영향 적음) */
-    font-size: 1.4em;         /* 모바일에서 글자 크기 살짝 작게 */
-    
-    width: 48px;              /* 버튼 가로 크기 (원/타원 크기 설정) */
-    height: 48px;             /* 버튼 세로 크기 (森 글자 세로에 맞춤) */
-    padding: 0;               /* flex 중앙정렬이므로 여백은 제거 */
-    border-radius: 50%;       /* 원형 버튼 모양 (원/타원 만들기) */
-
-    background-color: transparent; /* 기본 상태: 투명 배경 */
-    color: #2e5f3e;           /* 기본 상태: 초록 글자 */
-    border: none;             /* 기본 테두리 없음 */
-
-    transition: all 0.3s ease; /* hover/클릭 시 부드럽게 변화 */
-    }
-
+    width: 40px;
+    height: 40px;
+    font-size: 1.4em;
+    border-radius: 50%;
+    background-color: transparent;
+    color: #2e5f3e;
+    border: none;
+    transition: all 0.3s ease;
+  }
+        
   .forest-btn:hover,
   .forest-btn:active {         /* hover 또는 클릭 시 스타일 */
     background-color: #2e5f3e; /* 배경 초록 */
