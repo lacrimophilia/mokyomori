@@ -155,7 +155,7 @@
       transform: translateX(-50%);
       width: 90%;
       max-width: 600px;
-      background: rgba(46, 95, 62, 0.95);
+      background: rgba(46, 95, 62, 0.8);
       color: white;
       padding: 0 20px;
       border-radius: 5px;
@@ -356,7 +356,7 @@ for (let i = 0; i < 2; i++) {
       <h3>숲 소식 들고 찾아갈게요</h3>
     <input type="email" id="emailInput" class="input-field" placeholder="어디로 가면 될까요 .. 이를테면 메일">
     <input type="text" id="nameInput" class="input-field" placeholder="어떻게 불리길 원하나요 .. 이를테면 이름">
-    <button onclick="submitSubscription()">구독하기</button>
+    <button onclick="submitEmail()">구독하기</button>
     `;
     overlay.onclick = () => {
       document.body.removeChild(popup);
