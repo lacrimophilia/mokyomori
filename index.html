@@ -135,26 +135,27 @@ h1 {
 
 .intro-panel {
   position: absolute;
-  top: 100%; /* 제목 바로 아래 */
-  left: 0;
-  width: 100%;
-  background: rgba(46, 95, 62, 0.9);
+  top: 60px; /* 제목 바로 아래 */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 600px;
+  background: rgba(46, 95, 62, 0.95);
   color: white;
-  text-align: center;
-  padding: 15px;
-  font-size: 0.9em;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-  transition: max-height 0.5s ease, opacity 0.5s ease;
-  max-height: 0;
+  padding: 0 20px;   /* 기본 패딩 제거 */
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   overflow: hidden;
-  z-index: 1000;
-}
-    
-.intro-panel.open {
-  max-height: 400px; /* 내용 높이보다 충분히 크게 */
-  opacity: 1;
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.5s ease, opacity 0.5s ease, padding 0.5s ease;
 }
 
+.intro-panel.open {
+  padding: 20px;     /* 열릴 때만 패딩 적용 */
+  max-height: 400px;
+  opacity: 1;
+}
 
 .close-btn {
   cursor: pointer;
@@ -170,7 +171,7 @@ h1 {
 </head>
 <body>
   <h1><span class="korean-title">목요모리</span> <span class="chinese-title">木曜森</span>
-    <span class="info-icon" onclick="toggleIntro()">i</span></h1>
+  <span class="info-icon" onclick="toggleIntro()">i</span></h1>
   <div class="forest" id="forest"></div>
   <div class="footer">© 2025 mokyomori</div>
   <div id="intro-panel" class="intro-panel">
