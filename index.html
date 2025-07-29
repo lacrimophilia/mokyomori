@@ -111,16 +111,17 @@
       font-weight: 400; /* Dongle은 얇은 폰트이므로 굵게 안 하는 게 어울림 */
       margin: 0 0 10px 0;
     }
+
 .info-icon {
   cursor: pointer;
   display: inline-block;
-  font-size: 0.7em;
-  color: #2e5f3e; /* 제목색 */
+  font-size: 0.5em; 
+  color: #2e5f3e;
   border: 1px solid #2e5f3e;
   border-radius: 50%;
-  padding: 0 6px;
-  margin-left: 8px;
-  vertical-align: super;
+  padding: 0 4px; 
+  margin-left: 6px;
+  vertical-align: middle;
   transition: background-color 0.3s, color 0.3s;
 }
 
@@ -128,10 +129,13 @@
   background-color: #2e5f3e;
   color: white;
 }
+h1 {
+  position: relative; /* intro-panel 위치 기준점 */
+}
 
 .intro-panel {
-  position: fixed;
-  top: -200px;
+  position: absolute;
+  top: 100%; /* 제목 바로 아래 */
   left: 0;
   width: 100%;
   background: rgba(46, 95, 62, 0.9);
@@ -140,13 +144,26 @@
   padding: 15px;
   font-size: 0.9em;
   box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-  transition: top 0.5s ease-in-out;
+  transition: max-height 0.5s ease, opacity 0.5s ease;
+  max-height: 0;
+  overflow: hidden;
   z-index: 1000;
-  font-family: 'Pretendard', sans-serif;
+}
+    
+.intro-panel.open {
+  max-height: 400px; /* 내용 높이보다 충분히 크게 */
+  opacity: 1;
 }
 
-.intro-panel.show {
-  top: 0;
+
+.close-btn {
+  cursor: pointer;
+  text-decoration: underline dotted; /* 점선 밑줄 */
+  color: #fff;
+  font-size: 0.85em;
+  margin-top: 10px;
+  text-align: right; /* 오른쪽 정렬 */
+  display: block; /* 줄 단독 차지 */
 }
 
   </style>
@@ -160,7 +177,9 @@
   <p> 반갑습니다. 이곳은 목요모리입니다.<br>
     모리는 일본어로 숲입니다. 목요일마다 느슨하게 자라는 글의 숲을 시도합니다.<br>
   가끔 들러서 산책해보세요.</p>
+ <p class="close-btn" onclick="toggleIntro()">다 읽었어요</p>
   </div>
+  
 <script>
     const forest = document.getElementById("forest");
     const posts = [
@@ -301,9 +320,10 @@
     }
   
   function toggleIntro() {
-  const panel = document.getElementById('intro-panel');
-  panel.classList.toggle('show');
+  const panel = document.getElementById("intro-panel");
+  panel.classList.toggle("open");
 }
+
 </script>
 </body>
 </html>
