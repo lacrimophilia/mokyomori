@@ -154,22 +154,17 @@
       opacity: 0;
       transition: max-height 1s ease, opacity 1s ease, padding 1s ease;
     }
-    
+
+        @media screen and (min-width: 1024px) { /* 데스크톱 해상도 이상 */
+          .intro-panel {
+            max-width: 800px; /* 600px → 800px로 넓힘 */
+          }
+        }
+
     .intro-panel.open {
       padding: 20px;
       opacity: 1;
     }
-
-     .overlay-intro {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: transparent; /* 클릭만 감지하는 투명 영역 */
-      z-index: 500; /* intro-panel보다 아래 or 같게 */
-    }
-
 
    .citation {
         color: #2e5f3e; /* 초록색 */
