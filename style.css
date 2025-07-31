@@ -119,11 +119,11 @@
       font-family: 'Dongle', sans-serif;
       cursor: pointer;
       display: inline-block;
-      font-size: 1em; 
+      font-size: 0.6em; 
       color: #2e5f3e;
       border: 1px solid #2e5f3e;
       border-radius: 50%;
-      padding: 0 2px; 
+      padding: 0 4px; 
       margin-left: 3px;
       vertical-align: middle;
       transition: background-color 0.3s, color 0.3s;
