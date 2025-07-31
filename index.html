@@ -197,15 +197,28 @@
   
 function toggleIntro() {
   const panel = document.getElementById("intro-panel");
+  
   if (panel.classList.contains("open")) {
     panel.style.maxHeight = 0;
     panel.classList.remove("open");
+
+    // overlay 제거
+    const overlay = document.querySelector(".overlay-intro");
+    if (overlay) overlay.remove();
+    
   } else {
     panel.classList.add("open");
-    panel.style.maxHeight = panel.scrollHeight + "px"; // 내용 높이만큼 열기
+    panel.style.maxHeight = panel.scrollHeight + "px";
+
+    // overlay 생성
+    const overlay = document.createElement("div");
+    overlay.className = "overlay-intro";
+    overlay.onclick = () => toggleIntro();
+    document.body.appendChild(overlay);
   }
 }
 
+  
   function moveSubscriberFree(subscriber) {
   let angle = Math.random() * 2 * Math.PI; // 초기 랜덤 각도
   let speed = 0.03; // 속도 (작을수록 느림)
