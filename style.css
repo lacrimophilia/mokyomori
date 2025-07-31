@@ -157,7 +157,6 @@
     
     .intro-panel.open {
       padding: 20px;
-      max-height: 400px;
       opacity: 1;
     }
 
