@@ -197,24 +197,12 @@
   
 function toggleIntro() {
   const panel = document.getElementById("intro-panel");
-  
   if (panel.classList.contains("open")) {
     panel.style.maxHeight = 0;
     panel.classList.remove("open");
-
-    // overlay 제거
-    const overlay = document.querySelector(".overlay-intro");
-    if (overlay) overlay.remove();
-    
   } else {
     panel.classList.add("open");
     panel.style.maxHeight = panel.scrollHeight + "px";
-
-    // overlay 생성
-    const overlay = document.createElement("div");
-    overlay.className = "overlay-intro";
-    overlay.onclick = () => toggleIntro();
-    document.body.appendChild(overlay);
   }
 }
 
