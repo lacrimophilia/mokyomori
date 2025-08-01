@@ -84,9 +84,9 @@
       { title: "2025-07-10-glue", tag: "역설" },
       { title: "2025-07-17-new-summer", tag: "여름" },
       { title: "2025-07-24-and", tag: "사랑" },
-      { title: "care-memory", tag: "돌봄" },
-      { title: "like-a-movie", tag: "영화" },
-      { title: "body-language", tag: "몸" }
+      { title: "2025-07-31-in-season", tag: "시간" },
+     // { title: "care-memory", tag: "돌봄" },
+     // { title: "body-language", tag: "몸" }
     ];
     const tagMap = {};
     posts.forEach(post => {
@@ -97,18 +97,18 @@
     const tagPositions = {
       사랑: { x: 15, y: 20 },
       여름: { x: 35, y: 50 },
-      돌봄: { x: 55, y: 40 },
-      영화: { x: 70, y: 25 },
-      몸: { x: 40, y: 70 },
+      시간: { x: 70, y: 25 },
       역설: { x: 62, y: 58 },
+     // 몸: { x: 40, y: 70 },
+     // 돌봄: { x: 55, y: 40 },
     };
     const tagColors = {
       사랑: "#7fc97f",
       여름: "#66c2a5",
-      돌봄: "#b2df8a",
-      영화: "#a6d854",
-      몸: "#3288bd",
+      시간: "#a6d854",
       역설: "#cde86b",
+      // 몸: "#3288bd",
+      // 돌봄: "#b2df8a",
     };
 
     function extractDate(title) {
