@@ -118,15 +118,16 @@
     .info-icon {
       font-family: 'Dongle', sans-serif;
       cursor: pointer;
-      display: inline-block;
+      display: inline-flex;           /* 🔹 flex로 바꾸기 */
+      align-items: center;            /* 🔹 세로 중앙 정렬 */
+      justify-content: center;        /* 🔹 가로 중앙 정렬 */ 
       font-size: 0.7em; 
       line-height: 1;  
       color: #2e5f3e;
       border: 1px solid #2e5f3e;
       border-radius: 50%;
       padding: 0 2px; 
-      margin-left: 3px;
-      vertical-align: middle;
+      margin-left: 3px;     
       transition: background-color 0.3s, color 0.3s;
     }
     
