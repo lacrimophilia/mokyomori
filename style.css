@@ -101,13 +101,6 @@
       color: white;
     }
     
-     a {
-      color: #2e5f3e;
-      text-decoration: none;
-    }
-     a:hover {
-      text-decoration: underline;
-    }
     .popup h3 {
       font-family: 'Dongle', sans-serif;
       font-size: 28px; /* 글씨가 너무 작을 수 있으니 적절히 키우기 */
@@ -160,6 +153,7 @@
       transition: max-height 1s ease, opacity 1s ease, padding 1s ease;
     }
 
+
         @media screen and (min-width: 1024px) { /* 데스크톱 해상도 이상 */
           .intro-panel {
             max-width: 700px;
@@ -171,6 +165,10 @@
       opacity: 1;
     }
 
+   .content a {
+      color: white;
+      text-decoration: underline;
+    }
    .citation {
         color: #eaf9e5; 
         cursor: pointer;
