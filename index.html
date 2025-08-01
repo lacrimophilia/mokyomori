@@ -244,26 +244,47 @@ for (let i = 0; i < 2; i++) {
   moveSubscriberFree(person);
 }
 
-    // 모바일용 터치 toggle
-  document.addEventListener("DOMContentLoaded", function () {
-    document.querySelectorAll(".citation").forEach(function (el) {
-      el.addEventListener("click", function (e) {
-        // 데스크탑에서는 무시
-        if (window.innerWidth > 768) return;
+ 
+document.addEventListener("DOMContentLoaded", function () {
+  document.querySelectorAll(".citation").forEach(function (el) {
+    el.addEventListener("click", function (e) {
+      // 데스크탑은 무시
+      if (window.innerWidth > 768) return;
 
-        // toggle
-        e.stopPropagation(); // 다른 클릭 막기
-        el.classList.toggle("active");
-      });
-    });
+      // toggle
+      e.stopPropagation(); //다른 클릭 막기
+      el.classList.toggle("active");
 
-    // 바깥 클릭 시 닫기
-    document.addEventListener("click", function () {
-      document.querySelectorAll(".citation.active").forEach(function (el) {
-        el.classList.remove("active");
-      });
+      if (el.classList.contains("active")) {
+        adjustTooltipPosition(el);
+      }
     });
   });
+
+  // 바깥 클릭 시 닫기
+  document.addEventListener("click", function () {
+    document.querySelectorAll(".citation.active").forEach(function (el) {
+      el.classList.remove("active");
+    });
+  });
+
+  function adjustTooltipPosition(el) {
+    const tooltipRect = el.getBoundingClientRect();
+    const padding = 10; // 화면 여백 기준
+    let translateValue = -50; // 기본값 중앙
+
+    // 오른쪽 화면 밖으로 넘어가면 왼쪽으로 당김
+    if (tooltipRect.right > window.innerWidth - padding) {
+      translateValue = -70;
+    }
+    // 왼쪽 화면 밖으로 넘어가면 오른쪽으로 당김
+    else if (tooltipRect.left < padding) {
+      translateValue = -30;
+    }
+
+    el.style.setProperty('--tooltip-translate', `${translateValue}%`);
+  }
+});
 
 </script>
 </body>
