@@ -36,7 +36,7 @@
      .inline-img {
       display: block;
       margin: 20px auto;
-      max-width: 100%;
+      max-width: 90%;
       max-height: 600px; /* 세로 최대 길이 제한 */
       height: auto;
       border-radius: 12px;
