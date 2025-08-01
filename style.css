@@ -120,6 +120,7 @@
       cursor: pointer;
       display: inline-block;
       font-size: 0.7em; 
+      line-height: 1;  
       color: #2e5f3e;
       border: 1px solid #2e5f3e;
       border-radius: 50%;
