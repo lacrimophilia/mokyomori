@@ -111,9 +111,9 @@
     .info-icon {
       font-family: 'Dongle', sans-serif;
       cursor: pointer;
-      display: inline-flex;           /* 🔹 flex로 바꾸기 */
-      align-items: center;            /* 🔹 세로 중앙 정렬 */
-      justify-content: center;        /* 🔹 가로 중앙 정렬 */ 
+      display: inline-flex;          
+      align-items: center;            /* 세로 중앙 정렬 */
+      justify-content: center;        /* 가로 중앙 정렬 */ 
       font-size: 0.7em; 
       line-height: 1;  
       color: #2e5f3e;
@@ -121,6 +121,8 @@
       border-radius: 50%;
       padding: 0 2px; 
       margin-left: 3px;     
+      top: -2px;              /* 전체 아이콘 위치 살짝 위로 */
+      transform: translateY(0.5px); /* 글자 세로 위치 미세 조정 */
       transition: background-color 0.3s, color 0.3s;
     }
     
