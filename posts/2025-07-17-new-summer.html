@@ -5,42 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../post-style.css"> 
   <title>2025-07-18-summer</title>
   <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: "Pretendard", "Noto Sans KR", sans-serif;
-      background-color: #ffffff;
-    }
-    .content {
-      width: 90%;
-      max-width: 800px;
-      margin: 80px auto;
-      line-height: 1.8;
-      font-size: 1.1em;
-      color: #333;
-      text-align: left;
-      padding: 0 10px;
-      position: relative;
-    }
-    h1 {
-      font-size: 1.5em;
-      color: #2e5f3e;
-      margin-bottom: 30px;
-      text-align: left;
-    }
-    .post-date {
-    text-align: right;
-    color: #2e5f3e; /* 제목 색과 통일 */
-    font-size: 0.9em; /* 본문보다 작게 */
-    margin-top: -20px; /* h1과 간격 줄이기 */
-    margin-bottom: 30px; /* 본문과 간격 */
-  }
-    .content a {
-      color: #2e5f3e;
-      text-decoration: underline;
-    }
     .inline-img {
       display: none;
     }
@@ -53,78 +20,7 @@
       object-fit: cover;
     }
 
-     .citation {
-        color: #2e5f3e; /* 초록색 */
-        cursor: pointer;
-        position: relative;
-        font-weight: bold;
-      }
-      
-      .citation::after {
-        content: attr(data-tooltip);
-        position: absolute;
-        bottom: 120%;
-        left: 50%;
-        transform: translateX(-50%);
-        background-color: #e6f0ea;
-        color: #333;
-        padding: 6px 10px;
-        border-radius: 6px;
-        white-space: nowrap;
-        font-size: 0.9em;
-        font-weight: normal;
-        opacity: 0;
-        pointer-events: none;
-        transition: opacity 0.2s;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-        z-index: 10;
-      }
-      
-      /* 데스크탑용 hover */
-      .citation:hover::after,
-      .citation:focus::after {
-        opacity: 1;
-      }
-      
-      /* 모바일용: active 클래스 있을 때 보여주기 */
-      .citation.active::after {
-        opacity: 1;
-        pointer-events: auto;
-      }
-    /* PC & 모바일 공통 스타일 */
-  .forest-btn {
-    font-family: 'M PLUS Rounded 1c', sans-serif;
-    color: #2e5f3e;
-    background-color: transparent;
-    border-radius: 50px; /* 세로형 타원형 버튼 */
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    transition: all 0.3s ease;
-    cursor: pointer;
-  }
-
-  /* PC 전용: 좌측 하단 고정 */
-  @media screen and (min-width: 601px) {
-    .forest-btn {
-      position: fixed;
-      bottom: 20px;
-      left: 20px;
-      font-size: 1.8em; /* 森 크기 */
-      padding: 3px 5px; /* 타원형 비율 */
-      z-index: 1000;
-    }
-    .forest-btn:hover {
-      background-color: #2e5f3e;
-      color: white;
-    }
-  }
-    
     @media screen and (max-width: 600px) {
-      .content {
-        width: 90%;
-        font-size: 1em; 
-      }
       .float-img {
         display: none;
       }
@@ -135,31 +31,7 @@
         height: auto;
         border-radius: 12px;
       }
-      .forest-btn {
-    position: relative;
-    display: inline-flex;      /* 글자 감싸는 버튼 형태 유지 */
-    align-items: center;       /* 세로 가운데 정렬 */
-    justify-content: center;   /* 가로 가운데 정렬 */
-
-    margin: 0 15px 0 auto;     /* 본문 끝 + 오른쪽 정렬 */
-    float: right;              /* 오른쪽 끝으로 붙이기 */
-    
-    width: 40px;
-    height: 40px;
-    font-size: 1.6em;
-    border-radius: 50%;
-    background-color: transparent;
-    color: #2e5f3e;
-    border: none;
-    transition: all 0.3s ease;
-  }
-        
-  .forest-btn:hover,
-  .forest-btn:active {         /* hover 또는 클릭 시 스타일 */
-    background-color: #2e5f3e; /* 배경 초록 */
-    color: white;              /* 글자 흰색 */
-    }
-    }
+   
   </style>
 </head>
 <body>
@@ -267,6 +139,7 @@
     </p>
   </div>
   <a href="../index.html" class="forest-btn">森</a>
+  
     <script>
     function makeDraggable(el) {
       let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
@@ -317,30 +190,6 @@
     el.style.right = "auto";
   }
     }
-
-    document.querySelectorAll(".float-img").forEach(makeDraggable);
-
-  // 모바일용 터치 toggle
-  document.addEventListener("DOMContentLoaded", function () {
-    document.querySelectorAll(".citation").forEach(function (el) {
-      el.addEventListener("click", function (e) {
-        // 데스크탑에서는 무시
-        if (window.innerWidth > 768) return;
-
-        // toggle
-        e.stopPropagation(); // 다른 클릭 막기
-        el.classList.toggle("active");
-      });
-    });
-
-    // 바깥 클릭 시 닫기
-    document.addEventListener("click", function () {
-      document.querySelectorAll(".citation.active").forEach(function (el) {
-        el.classList.remove("active");
-      });
-    });
-  });
-
   </script>
 </body>
 </html>
