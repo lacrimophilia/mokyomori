@@ -108,6 +108,16 @@
       margin: 0 0 10px 0;
     }
 
+    /*태그 겹칠 때 목록 항목*/
+     a {
+      color: #2e5f3e;
+      text-decoration: none;
+    }
+     a:hover {
+      text-decoration: underline;
+    }
+
+
     .info-icon {
       font-family: 'Dongle', sans-serif;
       cursor: pointer;
@@ -167,7 +177,7 @@
       opacity: 1;
     }
 
-   .content a {
+   .intro-panel a {
       color: white;
       text-decoration: underline;
     }
