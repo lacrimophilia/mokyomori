@@ -62,7 +62,8 @@
       { title: "2025-07-31-in-season", tag: "시간" },
       { title: "2025-08-14-evidence", tag: "역설" },
       { title: "2025-08-31-doodle", tag: "쓰기" },
-      { title: "2025-09-14-suspension", tag: "다른" }
+      { title: "2025-09-14-suspension", tag: "다른" },
+      { title: "2025-10-09-Re:", tag: "다시" }
     ];
     const tagMap = {};
     posts.forEach(post => {
@@ -78,6 +79,9 @@
       쓰기: { x: 40, y: 70 },
       다른: { x: 55, y: 40 },
     };
+
+    //  다시: { x: 82, y: 65 }
+  
     const tagColors = {
       사랑: "#7fc97f",
       여름: "#66c2a5",
@@ -85,6 +89,7 @@
       역설: "#cde86b",
       쓰기: "#4f784f",
       다른: "#c6d870",
+      다시: "#80b38a"
     };
 
     function extractDate(title) {
